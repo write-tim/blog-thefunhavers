@@ -118,10 +118,10 @@ Then start the project by running the following commands:
 
 ```bash
 # install dependencies if you haven't done so in the previous step.
-pnpm install
+npm install
 
 # start running the project
-pnpm dev
+npm run dev
 ```
 
 ## Google Site Verification (optional)
