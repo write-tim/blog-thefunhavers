@@ -75,13 +75,8 @@ const {
 
 const { Content } = await render(post);
 
-let ogImageUrl: string | undefined;
-
-if (typeof initOgImage === "string") {
-  ogImageUrl = initOgImage;
-} else if (initOgImage?.src) {
-  ogImageUrl = initOgImage.src;
-}
+let ogImageUrl: string | undefined =
+  typeof initOgImage === "string" ? initOgImage : (initOgImage as any)?.src;
 
 if (!ogImageUrl && config.features.dynamicOgImage) {
   const postUrl = getPostUrl(post.id, post.filePath, locale).replace(

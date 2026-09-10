@@ -7,9 +7,9 @@
     "file": "posts/this-is-the-end..md"
   },
   {
-    "title": "The Funhavers",
+    "title": "hello",
     "route": "/",
-    "desc": "A blog by The Funhavers.",
+    "desc": "Pictures, or it didn't happen.",
     "category": "Home",
     "file": "pages/home.md"
   },
