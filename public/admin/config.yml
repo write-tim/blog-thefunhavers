@@ -17,14 +17,51 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
-      - { label: "Publish Date", name: "pubDatetime", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "YYYY-MM-DD", time_format: "HH:mm" }
-      - { label: "Modified Date", name: "modDatetime", widget: "datetime", required: false, format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "YYYY-MM-DD", time_format: "HH:mm" }
-      - { label: "Author", name: "author", widget: "string", default: "Timothy Johnson" }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false, required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - {
+          label: "Publish Date",
+          name: "pubDatetime",
+          widget: "datetime",
+          format: "YYYY-MM-DDTHH:mm:ssZ",
+          date_format: "YYYY-MM-DD",
+          time_format: "HH:mm",
+        }
+      - {
+          label: "Modified Date",
+          name: "modDatetime",
+          widget: "datetime",
+          required: false,
+          format: "YYYY-MM-DDTHH:mm:ssZ",
+          date_format: "YYYY-MM-DD",
+          time_format: "HH:mm",
+        }
+      - {
+          label: "Author",
+          name: "author",
+          widget: "string",
+          default: "Timothy Johnson",
+        }
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "boolean",
+          default: false,
+          required: false,
+        }
+      - {
+          label: "Draft",
+          name: "draft",
+          widget: "boolean",
+          default: false,
+          required: false,
+        }
       - { label: "Tags", name: "tags", widget: "list", default: ["others"] }
       - { label: "OG Image", name: "ogImage", widget: "image", required: false }
-      - { label: "Canonical URL", name: "canonicalURL", widget: "string", required: false }
+      - {
+          label: "Canonical URL",
+          name: "canonicalURL",
+          widget: "string",
+          required: false,
+        }
       - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "pages"
@@ -36,6 +73,10 @@ collections:
     extension: "md"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string", required: false }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "string",
+          required: false,
+        }
       - { label: "Body", name: "body", widget: "markdown" }
-
