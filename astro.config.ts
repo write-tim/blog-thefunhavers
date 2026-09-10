@@ -101,6 +101,15 @@ function generateArticlesManifest() {
       : path.basename(file, path.extname(file));
     const desc = descMatch ? descMatch[1].trim() : "";
     const slug = rel.replace(/\.(mdx|md)$/, "");
+    if (slug === "home" || slug === "index") {
+      const homeArt = articles.find(a => a.route === "/");
+      if (homeArt) {
+        if (title) homeArt.title = title;
+        if (desc) homeArt.desc = desc;
+        homeArt.file = `pages/${rel}`;
+      }
+      continue;
+    }
     const route = `/${slug}/`;
     articles.push({
       title,

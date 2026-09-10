@@ -74,11 +74,12 @@ collections:
     format: "yaml-frontmatter"
     extension: "md"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Title", name: "title", widget: "string", hint: "Page title or Hero heading (for Home)" }
       - {
           label: "Description",
           name: "description",
           widget: "string",
           required: false,
+          hint: "Meta description for search engines and social sharing",
         }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", hint: "Page content or Hero intro text (for Home)" }

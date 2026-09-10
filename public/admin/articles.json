@@ -1,9 +1,17 @@
 [
   {
+    "title": "This is the end.",
+    "route": "/posts/this-is-the-end./",
+    "desc": "Hello, goodbye.",
+    "category": "Blog Posts",
+    "file": "posts/this-is-the-end..md"
+  },
+  {
     "title": "The Funhavers",
     "route": "/",
     "desc": "A blog by The Funhavers.",
-    "category": "Home"
+    "category": "Home",
+    "file": "pages/home.md"
   },
   {
     "title": "About",
