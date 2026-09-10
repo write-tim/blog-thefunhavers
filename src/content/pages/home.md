@@ -1,7 +1,6 @@
 ---
-title: "The Funhavers"
-description: "A blog by The Funhavers."
+title: hello.
+description: Pictures, or it didn't happen.
 ---
 
-Welcome to **The Funhavers** blog! We share our latest projects, stories, and adventures here.
-
+Adventure is out there... let's go find it.![](https://picsum.photos/id/95/1920/1280.webp)
