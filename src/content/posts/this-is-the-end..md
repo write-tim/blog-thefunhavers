@@ -14,6 +14,8 @@ canonicalURL: ''
 
 ## Heading 2
 
+![](/assets/C_R78150.jpg)
+
 Paragraph.
 
 - Bullets
