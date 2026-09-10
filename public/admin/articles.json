@@ -14,46 +14,11 @@
     "file": "posts/customizing-astropaper-theme-color-schemes.mdx"
   },
   {
-    "title": "Dynamic OG image generation in AstroPaper blog posts",
-    "route": "/posts/dynamic-og-images/",
-    "desc": "New feature in AstroPaper v1.4.0, introducing dynamic OG image generation for blog posts.",
-    "category": "Blog Posts",
-    "file": "posts/dynamic-og-images.md"
-  },
-  {
-    "title": "How to add LaTeX Equations in Astro blog posts",
-    "route": "/posts/how-to-add-latex-equations-in-blog-posts/",
-    "desc": "Learn how to add LaTeX equations in Astro blog posts using Markdown, KaTeX, and remark/rehype plugins.",
-    "category": "Blog Posts",
-    "file": "posts/how-to-add-latex-equations-in-blog-posts.md"
-  },
-  {
     "title": "How to configure AstroPaper theme",
     "route": "/posts/how-to-configure-astropaper-theme/",
     "desc": "How you can make AstroPaper theme absolutely yours.",
     "category": "Blog Posts",
     "file": "posts/how-to-configure-astropaper-theme.mdx"
-  },
-  {
-    "title": "How to integrate Giscus comments into AstroPaper",
-    "route": "/posts/how-to-integrate-giscus-comments/",
-    "desc": "Comment function on a static blog hosted on GitHub Pages with Giscus.",
-    "category": "Blog Posts",
-    "file": "posts/how-to-integrate-giscus-comments.md"
-  },
-  {
-    "title": "How to update dependencies of AstroPaper",
-    "route": "/posts/how-to-update-dependencies/",
-    "desc": "How to update project dependencies and AstroPaper template.",
-    "category": "Blog Posts",
-    "file": "posts/how-to-update-dependencies.md"
-  },
-  {
-    "title": "How to use Git Hooks to set Created and Modified Dates",
-    "route": "/posts/setting-dates-via-git-hooks/",
-    "desc": "How to use Git Hooks to set your Created and Modified Dates on AstroPaper",
-    "category": "Blog Posts",
-    "file": "posts/setting-dates-via-git-hooks.md"
   },
   {
     "title": "Predefined color schemes",
@@ -157,4 +122,3 @@
     "file": "posts/_releases/astro-paper-6.md"
   }
 ]
-
