@@ -8,7 +8,7 @@ featured: true
 draft: false
 tags:
   - Fancy pants.
-ogImage: ''
+ogImage: https://picsum.photos/id/1061/1920/1280.webp
 canonicalURL: ''
 ---
 
