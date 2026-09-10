@@ -2,6 +2,8 @@ backend:
   name: github
   repo: write-tim/blog-thefunhavers
   branch: main
+  base_url: https://sveltia-gatekeeper.onrender.com
+  auth_endpoint: auth
 
 media_folder: "public/assets"
 public_folder: "/assets"
