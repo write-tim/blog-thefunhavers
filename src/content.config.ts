@@ -33,4 +33,18 @@ const trips = defineCollection({
   }),
 });
 
-export const collections = { blog, trips };
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
+  schema: z.object({
+    greeting: z.string().default("Hello, we're"),
+    firstName: z.string().default('The'),
+    lastName: z.string().default('Funhavers'),
+    typingRoles: z.array(z.string()).default([]),
+    bio: z.string().optional(),
+    description: z.string().optional(),
+    avatar: z.string().optional(),
+  }),
+});
+
+export const collections = { blog, trips, pages };
+

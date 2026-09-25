@@ -3,6 +3,11 @@ import Layout from '../components/Layout.astro';
 import Hero from '../components/Hero.astro';
 import { site, withBase } from '../data/site';
 import { experience, skillGroups } from '../data/resume';
+import { getEntry, render } from 'astro:content';
+
+const homeEntry = await getEntry('pages', 'home');
+const renderedHome = homeEntry ? await render(homeEntry) : null;
+const HomeContent = renderedHome?.Content;
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -26,4 +31,11 @@ const personJsonLd = {
 
 <Layout title={undefined} jsonLd={personJsonLd}>
   <Hero />
+  {HomeContent && homeEntry?.body && homeEntry.body.trim().length > 0 && (
+    <section class="section" style="padding-top: 0;">
+      <div class="container prose">
+        <HomeContent />
+      </div>
+    </section>
+  )}
 </Layout>

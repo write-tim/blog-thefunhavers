@@ -1,26 +1,37 @@
 ---
-import { typingRoles } from '../data/resume';
+import { typingRoles as defaultTypingRoles } from '../data/resume';
 import { site, withBase } from '../data/site';
 import Icon from './Icon.astro';
+import { getEntry } from 'astro:content';
 
-const rolesJson = JSON.stringify(typingRoles);
-const nameParts = site.author.name.split(' ');
-const firstName = nameParts.shift() ?? '';
-const lastName = nameParts.join(' ');
+const homeEntry = await getEntry('pages', 'home');
+const homeData = homeEntry?.data;
+
+const greeting = homeData?.greeting ?? "Hello, we're";
+const firstName = homeData?.firstName ?? site.author.name.split(' ')[0] ?? '';
+const lastName = homeData?.lastName ?? site.author.name.split(' ').slice(1).join(' ') ?? '';
+
+const roles = (homeData?.typingRoles && homeData.typingRoles.length > 0)
+  ? homeData.typingRoles
+  : defaultTypingRoles;
+const rolesJson = JSON.stringify(roles);
+
+const bio = homeData?.bio ?? homeData?.description ?? site.description;
+const avatar = homeData?.avatar || '/img/avatar.svg';
 ---
 
 <section class="hero">
   <div class="stars" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div>
-      <p class="hero-greeting">Hello, I'm</p>
+      <p class="hero-greeting">{greeting}</p>
       <h1>{firstName} {lastName && <span class="accent">{lastName}</span>}</h1>
       <p class="hero-typed">
         <span class="typed" id="typed-roles" data-roles={rolesJson}></span><span class="typed-cursor" aria-hidden="true">▍</span>
       </p>
 
       <p class="hero-bio">
-        {site.description}
+        {bio}
       </p>
 
       <div class="social-row">
@@ -33,7 +44,7 @@ const lastName = nameParts.join(' ');
       </div>
     </div>
 
-    <img class="hero-avatar" src={withBase('/img/avatar.svg')} alt={`Portrait of ${site.author.name}`} width="220" height="220" />
+    <img class="hero-avatar" src={withBase(avatar)} alt={`Portrait of ${firstName} ${lastName}`} width="220" height="220" />
   </div>
 </section>
 

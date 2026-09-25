@@ -85,3 +85,42 @@ collections:
       - { label: "Rotating Circle Photos", name: "circlePhotos", widget: "list", field: { label: "Photo", name: "photo", widget: "image" } }
       - { label: "Gallery Photos", name: "gallery", widget: "list", field: { label: "Photo", name: "photo", widget: "image" } }
       - { label: "Story (Body)", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "src/content/pages/home.md"
+        fields:
+          - { label: "Greeting", name: "greeting", widget: "string", default: "Hello, we're" }
+          - { label: "First Name / Brand", name: "firstName", widget: "string", default: "The" }
+          - { label: "Last Name / Accent", name: "lastName", widget: "string", default: "Funhavers" }
+          - {
+              label: "Typing Animation Roles",
+              name: "typingRoles",
+              widget: "list",
+              default: ["the funhavers", "weekend adventurers", "storytellers", "outdoor enthusiasts"],
+              hint: "Words typed out one by one under your name",
+            }
+          - {
+              label: "Bio / Tagline",
+              name: "bio",
+              widget: "text",
+              default: "Pictures, or it didn't happen. Adventure is out there... let's go find it.",
+            }
+          - {
+              label: "Avatar / Profile Picture",
+              name: "avatar",
+              widget: "image",
+              default: "/img/avatar.svg",
+              required: false,
+            }
+          - {
+              label: "Additional Content (Optional)",
+              name: "body",
+              widget: "markdown",
+              required: false,
+              hint: "Extra content displayed below the hero card on the home page.",
+            }
+
