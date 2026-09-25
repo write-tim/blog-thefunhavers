@@ -64,3 +64,4 @@ projects:
       - title: "Permissions & Security Explainer"
         description: "Clear, transparent technical summaries explaining why specific browser permissions are requested to build trust with security-conscious users."
 ---
+
