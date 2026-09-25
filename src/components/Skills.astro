@@ -1,5 +1,12 @@
 ---
-import { skillGroups } from '../data/resume';
+import { skillGroups as defaultSkills } from '../data/resume';
+import type { SkillGroup as SkillGroupType } from '../data/resume';
+
+interface Props {
+  skillGroups?: SkillGroupType[];
+}
+
+const skillGroups = Astro.props.skillGroups ?? defaultSkills;
 ---
 
 <section class="section section-alt" id="skills">

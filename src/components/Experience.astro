@@ -1,5 +1,14 @@
 ---
-import { experience, earlierRoles } from '../data/resume';
+import { experience as defaultExp, earlierRoles as defaultEarlier } from '../data/resume';
+import type { Experience as ExperienceType } from '../data/resume';
+
+interface Props {
+  experience?: ExperienceType[];
+  earlierRoles?: { role: string; company: string; start: string; end: string }[];
+}
+
+const experience = Astro.props.experience ?? defaultExp;
+const earlierRoles = Astro.props.earlierRoles ?? defaultEarlier;
 
 const formatDate = (e: { start: string; end: string }) =>
   e.end === 'Present' ? `${e.start} – Present` : `${e.start} – ${e.end}`;

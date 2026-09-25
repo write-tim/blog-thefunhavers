@@ -123,4 +123,61 @@ collections:
               required: false,
               hint: "Extra content displayed below the hero card on the home page.",
             }
+      - name: "work"
+        label: "Work Page"
+        file: "src/content/pages/work.md"
+        fields:
+          - { label: "Page Eyebrow / Title", name: "title", widget: "string", default: "Work" }
+          - { label: "Your Name", name: "name", widget: "string", default: "Timothy Johnson" }
+          - { label: "Current Headline Role", name: "currentRole", widget: "string", default: "Senior Software Engineer" }
+          - { label: "Current Headline Company", name: "currentCompany", widget: "string", default: "Example Corp" }
+          - { label: "Location", name: "location", widget: "string", default: "United States" }
+          - label: "Experience Timeline"
+            name: "experience"
+            widget: "list"
+            fields:
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Company", name: "company", widget: "string" }
+              - { label: "Company URL", name: "companyUrl", widget: "string", required: false }
+              - { label: "Location", name: "location", widget: "string", default: "Remote" }
+              - { label: "Start Date", name: "start", widget: "string", hint: "e.g. Mar 2024" }
+              - { label: "End Date", name: "end", widget: "string", hint: "e.g. Present or Feb 2024" }
+              - { label: "Is Current Role?", name: "current", widget: "boolean", default: false }
+              - { label: "Summary", name: "summary", widget: "text", hint: "One-line summary of what you owned or led" }
+              - { label: "Bullet Points", name: "bullets", widget: "list", field: { label: "Bullet", name: "bullet", widget: "string" } }
+              - { label: "Tech Badges", name: "badges", widget: "list", required: false, field: { label: "Badge", name: "badge", widget: "string" } }
+          - label: "Earlier Roles (Compact)"
+            name: "earlierRoles"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Company", name: "company", widget: "string" }
+              - { label: "Start", name: "start", widget: "string" }
+              - { label: "End", name: "end", widget: "string" }
+          - label: "Education"
+            name: "education"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Degree", name: "degree", widget: "string", hint: "e.g. B.S." }
+              - { label: "Field", name: "field", widget: "string", hint: "e.g. Computer Science" }
+              - { label: "School", name: "school", widget: "string" }
+              - { label: "Start Year", name: "start", widget: "string" }
+              - { label: "End Year", name: "end", widget: "string" }
+          - label: "Skill Groups"
+            name: "skillGroups"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Group Title", name: "title", widget: "string", hint: "e.g. Languages, Platforms & Tools" }
+              - { label: "Skills", name: "skills", widget: "list", field: { label: "Skill", name: "skill", widget: "string" } }
+          - {
+              label: "Intro / Overview (Optional Markdown)",
+              name: "body",
+              widget: "markdown",
+              required: false,
+              hint: "Introductory paragraph or work philosophy displayed on the work page.",
+            }
+
 

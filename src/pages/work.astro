@@ -4,28 +4,63 @@ import Experience from '../components/Experience.astro';
 import Education from '../components/Education.astro';
 import Skills from '../components/Skills.astro';
 import { site, withBase } from '../data/site';
-import { experience } from '../data/resume';
+import {
+  experience as defaultExp,
+  earlierRoles as defaultEarlier,
+  education as defaultEdu,
+  skillGroups as defaultSkills,
+} from '../data/resume';
+import { getEntry, render } from 'astro:content';
+
+const workEntry = await getEntry('pages', 'work');
+const workData = workEntry?.data;
+const renderedWork = workEntry ? await render(workEntry) : null;
+const WorkContent = renderedWork?.Content;
+
+const pageTitle = workData?.title ?? 'Work';
+const name = workData?.name ?? site.author.name;
+
+const experience = (workData?.experience && workData.experience.length > 0)
+  ? workData.experience
+  : defaultExp;
+const earlierRoles = workData?.earlierRoles ?? defaultEarlier;
+const education = (workData?.education && workData.education.length > 0)
+  ? workData.education
+  : defaultEdu;
+const skillGroups = (workData?.skillGroups && workData.skillGroups.length > 0)
+  ? workData.skillGroups
+  : defaultSkills;
 
 const current = experience[0];
-const links = Object.values(site.socials).filter((s) => s.url.startsWith('http') || s.url.startsWith('mailto'));
+const currentRole = workData?.currentRole ?? current?.role;
+const currentCompany = workData?.currentCompany ?? current?.company;
+const location = workData?.location ?? site.author.location;
+
+const links = Object.values(site.socials).filter(
+  (s) => s.url.startsWith('http') || s.url.startsWith('mailto')
+);
 ---
 
 <Layout
-  title="Work"
-  description={current ? `${site.author.name} — ${current.role} at ${current.company}.` : `${site.author.name}'s work experience.`}
+  title={pageTitle}
+  description={
+    current
+      ? `${name} — ${currentRole ?? current.role} at ${currentCompany ?? current.company}.`
+      : `${name}'s work experience.`
+  }
   image="/img/og.jpg"
 >
   <section class="section">
     <div class="container">
-      <p class="eyebrow">Work</p>
-      <h1>{site.author.name}</h1>
-      {current && (
+      <p class="eyebrow">{pageTitle}</p>
+      <h1>{name}</h1>
+      {currentRole && currentCompany && (
         <p class="muted" style="margin: 0 0 0.25rem;">
-          {current.role} · {current.company}
+          {currentRole} · {currentCompany}
         </p>
       )}
       <p class="muted" style="margin: 0 0 1.5rem;">
-        {site.author.location}
+        {location}
         {links.map((s) => (
           <>
             {' · '}
@@ -33,12 +68,24 @@ const links = Object.values(site.socials).filter((s) => s.url.startsWith('http')
           </>
         ))}
       </p>
+
+      {WorkContent && workEntry?.body && workEntry.body.trim().length > 0 && (
+        <div class="prose" style="margin-top: 1.5rem;">
+          <WorkContent />
+        </div>
+      )}
     </div>
   </section>
 
-  <Experience />
+  {experience && experience.length > 0 && (
+    <Experience experience={experience} earlierRoles={earlierRoles} />
+  )}
 
-  <Education />
+  {education && education.length > 0 && (
+    <Education education={education} />
+  )}
 
-  <Skills />
+  {skillGroups && skillGroups.length > 0 && (
+    <Skills skillGroups={skillGroups} />
+  )}
 </Layout>

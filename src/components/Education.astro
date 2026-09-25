@@ -1,5 +1,12 @@
 ---
-import { education } from '../data/resume';
+import { education as defaultEdu } from '../data/resume';
+import type { Education as EducationType } from '../data/resume';
+
+interface Props {
+  education?: EducationType[];
+}
+
+const education = Astro.props.education ?? defaultEdu;
 ---
 
 <section class="section" id="education">
