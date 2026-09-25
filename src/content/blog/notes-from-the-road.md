@@ -1,13 +1,18 @@
 ---
 title: Notes from the road
 subtitle: Why this theme has a travel section at all
-date: 2026-07-02
-tags: [travel]
-category: life
 description: Work pages prove you can do things. Travel pages remember why you do them. A short argument for keeping both.
+date: 2026-07-02
+updated: ''
+category: life
+author: Timothy Johnson
+tags:
+  - travel
+coverImage: ''
+draft: true
 ---
 
-Resumés compress people into bullets. A travel log does the opposite — it's the only part of a personal site that gets *more* interesting over time, because it accumulates stories instead of job titles.
+Resumés compress people into bullets. A travel log does the opposite — it's the only part of a personal site that gets _more_ interesting over time, because it accumulates stories instead of job titles.
 
 > We travel not to escape life, but for life not to escape us.
 
