@@ -4,6 +4,10 @@ place: Kyoto, Japan
 date: 2026-04-10
 summary: A week of temples, alley markets, and slow mornings — the sample trip that ships with this theme.
 heroImage: /img/trips/sample/kyoto-hero.jpg
+highlights:
+  - Fushimi Inari at sunrise
+  - Nishiki Market snack crawl
+  - One perfect bowl of ramen
 circlePhotos:
   - /img/trips/sample/torii-gate.jpg
   - /img/trips/sample/lanterns.jpg
@@ -18,10 +22,6 @@ gallery:
   - /img/trips/sample/market-alley.jpg
   - /img/trips/sample/night-river.jpg
   - /img/trips/sample/shrine-cat.jpg
-highlights:
-  - Fushimi Inari at sunrise
-  - Nishiki Market snack crawl
-  - One perfect bowl of ramen
 ---
 
 This is a sample trip — replace every word and photo with your own. The structure is simple: write your story in this file, drop photos into `public/img/trips/<your-trip>/`, and list them under `gallery`.
