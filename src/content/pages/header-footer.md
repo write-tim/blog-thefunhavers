@@ -52,7 +52,7 @@ footerNavLinks:
 showFooterSocials: true
 footerSocialLinks:
   - label: GitHub
-    url: https://github.com/write-tim/blog-thefunhavers
+    url: https://github.com/write-tim/timothyjohnsonwrites
     show: false
   - label: Email
     url: mailto:tim@timothyjohnsonwrites.com

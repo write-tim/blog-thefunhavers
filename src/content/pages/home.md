@@ -13,7 +13,7 @@ bio: Adventure is out there.
 avatar: /assets/tim.jpeg
 buttons:
   - label: GitHub
-    url: https://github.com/write-tim/blog-thefunhavers
+    url: https://github.com/write-tim/timothyjohnsonwrites
     icon: github
     show: false
   - label: Email

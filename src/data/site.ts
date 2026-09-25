@@ -43,7 +43,7 @@ export const site = {
   /** Shown in the hero and footer. Delete a line to remove it from both places.
    *  `icon` is any name from src/components/Icon.astro */
   socials: {
-    github: { url: 'https://github.com/write-tim/blog-thefunhavers', label: 'GitHub', icon: 'github' },
+    github: { url: 'https://github.com/write-tim/timothyjohnsonwrites', label: 'GitHub', icon: 'github' },
     email: { url: 'mailto:tim@timothyjohnsonwrites.com', label: 'Email', icon: 'email' },
     portfolio: { url: 'https://timothyjohnsonwrites.com', label: 'Portfolio', icon: 'arrow-right' },
     rss: { url: '/rss.xml', label: 'RSS', icon: 'rss' },
