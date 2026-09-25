@@ -1,5 +1,5 @@
 ---
-title: From the Workshop
+title: From the workshop
 eyebrow: Projects
 intro: |-
   I conceived, architected, and documented the projects featured below independently. Designing and building these tools end-to-end let me approach software documentation from a unique perspective—defining the user experience, solving the product mechanics, and authoring end-user assistance materials firsthand.
