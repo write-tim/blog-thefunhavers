@@ -3,7 +3,7 @@ title: Notes from the road
 subtitle: Why this theme has a travel section at all
 description: Work pages prove you can do things. Travel pages remember why you do them. A short argument for keeping both.
 date: 2026-07-02
-updated: ''
+updated: 2026-09-25T00:05:00-05:00
 category: life
 author: Timothy Johnson
 tags:
