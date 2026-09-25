@@ -52,6 +52,9 @@ const pages = defineCollection({
       currentRole: z.string().optional(),
       currentCompany: z.string().optional(),
       location: z.string().optional(),
+      email: z.string().optional(),
+      phone: z.string().optional(),
+      portfolioUrl: z.string().optional(),
       experience: z
         .array(
           z.object({
@@ -84,8 +87,8 @@ const pages = defineCollection({
             degree: z.string(),
             field: z.string(),
             school: z.string(),
-            start: z.string(),
-            end: z.string(),
+            start: z.string().optional(),
+            end: z.string().optional(),
           })
         )
         .optional(),

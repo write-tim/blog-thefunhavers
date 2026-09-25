@@ -17,9 +17,11 @@ const education = Astro.props.education ?? defaultEdu;
       {
         education.map((e) => (
           <div class="card">
-            <p class="muted" style="font-family: var(--font-mono); font-size: 0.8rem; margin: 0 0 0.4rem;">
-              {e.start} – {e.end}
-            </p>
+            {(e.start || e.end) && (
+              <p class="muted" style="font-family: var(--font-mono); font-size: 0.8rem; margin: 0 0 0.4rem;">
+                {e.start && e.end ? `${e.start} – ${e.end}` : (e.end || e.start)}
+              </p>
+            )}
             <h3>{e.degree}</h3>
             <p style="margin: 0 0 0.2rem; font-weight: 600; color: var(--text-strong);">{e.field}</p>
             <p class="muted" style="margin: 0;">{e.school}</p>

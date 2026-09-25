@@ -34,8 +34,8 @@ export const site = {
   /** Your production URL — no trailing slash. Used for canonical URLs, OG tags, RSS and sitemap */
   url: 'https://blog.thefunhavers.club',
   author: {
-    name: 'Timothy Johnson',
-    email: 'write.timothyjohnson@gmail.com',
+    name: 'Timothy M. Johnson',
+    email: 'tim@timothyjohnsonwrites.com',
     location: 'United States',
     /** Optional: link to a PDF résumé served from /public */
     resume: '/resume/Resume.pdf',
@@ -44,7 +44,8 @@ export const site = {
    *  `icon` is any name from src/components/Icon.astro */
   socials: {
     github: { url: 'https://github.com/write-tim/blog-thefunhavers', label: 'GitHub', icon: 'github' },
-    email: { url: 'mailto:write.timothyjohnson@gmail.com', label: 'Email', icon: 'email' },
+    email: { url: 'mailto:tim@timothyjohnsonwrites.com', label: 'Email', icon: 'email' },
+    portfolio: { url: 'https://timothyjohnsonwrites.com', label: 'Portfolio', icon: 'arrow-right' },
     rss: { url: '/rss.xml', label: 'RSS', icon: 'rss' },
   } satisfies Record<string, SocialLink>,
 };

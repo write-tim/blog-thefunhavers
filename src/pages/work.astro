@@ -36,9 +36,18 @@ const currentRole = workData?.currentRole ?? current?.role;
 const currentCompany = workData?.currentCompany ?? current?.company;
 const location = workData?.location ?? site.author.location;
 
-const links = Object.values(site.socials).filter(
-  (s) => s.url.startsWith('http') || s.url.startsWith('mailto')
-);
+const phone = workData?.phone;
+const portfolioUrl = workData?.portfolioUrl;
+
+const links = [
+  ...(portfolioUrl ? [{ url: portfolioUrl, label: 'Portfolio' }] : []),
+  ...Object.values(site.socials).filter((s) => {
+    if (portfolioUrl && (s.url === portfolioUrl || s.label.toLowerCase() === 'portfolio')) {
+      return false;
+    }
+    return s.url.startsWith('http') || s.url.startsWith('mailto');
+  }),
+];
 ---
 
 <Layout
@@ -61,6 +70,12 @@ const links = Object.values(site.socials).filter(
       )}
       <p class="muted" style="margin: 0 0 1.5rem;">
         {location}
+        {phone && (
+          <>
+            {' · '}
+            <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`}>{phone}</a>
+          </>
+        )}
         {links.map((s) => (
           <>
             {' · '}

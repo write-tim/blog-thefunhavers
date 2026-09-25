@@ -15,8 +15,8 @@ export interface Education {
   degree: string;
   field: string;
   school: string;
-  start: string;
-  end: string;
+  start?: string;
+  end?: string;
 }
 
 export interface SkillGroup {
@@ -27,63 +27,139 @@ export interface SkillGroup {
 /** Work history — newest first. Shown on /work */
 export const experience: Experience[] = [
   {
-    role: 'Senior Software Engineer',
-    company: 'Example Corp',
-    companyUrl: 'https://example.com',
+    role: 'Technical Writer',
+    company: 'PayIt',
+    companyUrl: 'https://payitgov.com',
     location: 'Remote',
-    start: 'Mar 2024',
+    start: 'Jul 2024',
     end: 'Present',
     current: true,
-    summary: 'Replace this with a one-line summary of what you own or lead.',
+    summary:
+      'Develop and maintain client-facing instructional materials and documentation from the ground up for an enterprise government technology suite.',
     bullets: [
-      'Describe a thing you built, shipped, or led — outcomes over responsibilities.',
-      'Another bullet. Numbers help: latency cut in half, adoption up 3×, etc.',
-      'Mentoring, design reviews, on-call, whatever actually fills your week.',
+      'Develop and maintain client-facing instructional materials and documentation from the ground up for an enterprise government technology suite.',
+      'Create comprehensive performance-support materials—including job aids, quick-reference guides, and desk-side references—tailored for non-technical government agency users.',
+      'Apply adult learning principles to script, storyboard, and produce short-form e-learning video content, editing in Camtasia to improve client onboarding and reduce support requests.',
+      'Partner with Product, Delivery, and Subject Matter Experts (SMEs) to validate technical accuracy and ensure alignment across all training pathways.',
+      'Implement content governance procedures to standardize creation, ensuring structural consistency, accessibility, and terminology alignment.',
     ],
-    badges: ['TypeScript', 'Go', 'Kubernetes'],
+    badges: ['Technical Writing', 'Instructional Design', 'Camtasia', 'Section 508', 'Content Governance'],
   },
   {
-    role: 'Software Engineer',
-    company: 'Startup Inc.',
-    companyUrl: 'https://example.com',
-    location: 'Portland, OR',
-    start: 'Jul 2021',
-    end: 'Feb 2024',
-    summary: 'One line about the product and your slice of it.',
+    role: 'Video Content Creator',
+    company: 'Awesome Motive (OptinMonster)',
+    companyUrl: 'https://optinmonster.com',
+    location: 'Remote',
+    start: 'Dec 2020',
+    end: 'Jun 2024',
+    current: false,
+    summary:
+      'Managed all phases of multimedia e-learning development, translating complex software features into engaging instructional video content.',
     bullets: [
-      'Owned X end to end — design, implementation, rollout.',
-      'Built Y used by Z customers.',
+      'Managed all phases of multimedia e-learning development, including ideation, scripting, storyboarding, shooting, and post-production.',
+      'Collaborated with Engineering and Product SMEs to translate complex software features into engaging instructional video content.',
+      'Achieved a 150% increase in YouTube channel subscribers by optimizing educational content.',
+      'Integrated AI technologies into the video production process to maximize efficiency and instructional effectiveness.',
     ],
+    badges: ['Video Production', 'E-learning', 'YouTube Optimization', 'AI Integration', 'SaaS'],
+  },
+  {
+    role: 'Content Designer & Video Content Creator',
+    company: 'Blackboard',
+    companyUrl: 'https://www.blackboard.com',
+    location: 'Remote',
+    start: 'Sep 2013',
+    end: 'Sep 2020',
+    current: false,
+    summary:
+      'Led the instructional video content strategy, producing over 300 accessible, Section 508-compliant video titles to support the enterprise Learning Management System (LMS).',
+    bullets: [
+      'Led the instructional video content strategy, producing over 300 accessible, Section 508-compliant video titles to support the enterprise Learning Management System (LMS).',
+      'Developed modular written curriculum alongside video content, ensuring reusable instructional frameworks across diverse learner pathways.',
+      'Curated and updated training content, continuously monitoring materials for usability, technical accuracy, and structural organization.',
+    ],
+    badges: ['LMS', 'Section 508 Compliance', 'Curriculum Design', 'Video Production', 'Accessibility'],
+  },
+  {
+    role: 'Technical Writer & Instructional Designer',
+    company: 'Edline',
+    location: 'Carbondale, IL',
+    start: 'Apr 2011',
+    end: 'Sep 2013',
+    current: false,
+    summary:
+      'Created and maintained audience-appropriate end-user training documentation for a SaaS learning management platform.',
+    bullets: [
+      'Created and maintained clear, audience-appropriate end-user training documentation for a SaaS learning management platform.',
+      'Developed cross-functional review workflows with product owners to continuously edit and enhance instructional materials based on stakeholder feedback.',
+    ],
+    badges: ['Technical Writing', 'Instructional Design', 'SaaS', 'Training Documentation'],
+  },
+  {
+    role: 'Technical Writer',
+    company: 'SchoolCenter',
+    location: 'Carbondale, IL',
+    start: 'Nov 2004',
+    end: 'Apr 2011',
+    current: false,
+    summary:
+      'Wrote and structured end-user documentation, migrating help content to an accessible HTML and wiki-based system.',
+    bullets: [
+      'Wrote and structured end-user documentation, migrating help content to an accessible HTML and wiki-based system.',
+      'Authored software functional requirements and conducted usability testing to ensure product alignment.',
+    ],
+    badges: ['Technical Writing', 'HTML & Wiki', 'Usability Testing', 'Functional Requirements'],
   },
 ];
 
 /** Smaller/older roles — rendered as compact rows under the main timeline */
-export const earlierRoles: { role: string; company: string; start: string; end: string }[] = [
-  { role: 'Engineering Intern', company: 'Some Company', start: '2020', end: '2021' },
-];
+export const earlierRoles: { role: string; company: string; start: string; end: string }[] = [];
 
 export const education: Education[] = [
   {
-    degree: 'B.S.',
-    field: 'Computer Science',
-    school: 'State University',
-    start: '2016',
-    end: '2020',
+    degree: "Bachelor's Degree",
+    field: 'English',
+    school: 'Southern Illinois University, Carbondale, IL',
   },
 ];
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: 'Languages',
-    skills: ['TypeScript', 'Python', 'Go'],
+    title: 'Instructional Design & Content',
+    skills: [
+      'Technical Writing',
+      'Curriculum Development',
+      'Adult Learning Principles',
+      'Scripting & Storyboarding',
+      'E-learning Content',
+      'Section 508 Compliance',
+      'Accessibility',
+    ],
   },
   {
-    title: 'Platforms & Tools',
-    skills: ['React', 'PostgreSQL', 'Docker', 'AWS'],
+    title: 'Video & Multimedia Production',
+    skills: [
+      'End-to-end Video Production',
+      'Camtasia',
+      'DaVinci Resolve',
+      'Audio Recording & Editing',
+      'AI Technologies in Video Production',
+    ],
   },
   {
-    title: 'Interests',
-    skills: ['Distributed systems', 'Developer tooling', 'Photography'],
+    title: 'Tools & Platforms',
+    skills: [
+      'Learning Management Systems (LMS)',
+      'Agile Development',
+      'Content Strategy',
+      'Usability Testing',
+      'Adobe Creative Suite',
+      'HTML',
+      'WordPress',
+      'SaaS',
+      'Jira',
+      'Confluence',
+    ],
   },
 ];
 

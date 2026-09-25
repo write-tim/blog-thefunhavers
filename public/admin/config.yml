@@ -128,10 +128,13 @@ collections:
         file: "src/content/pages/work.md"
         fields:
           - { label: "Page Eyebrow / Title", name: "title", widget: "string", default: "Work" }
-          - { label: "Your Name", name: "name", widget: "string", default: "Timothy Johnson" }
-          - { label: "Current Headline Role", name: "currentRole", widget: "string", default: "Senior Software Engineer" }
-          - { label: "Current Headline Company", name: "currentCompany", widget: "string", default: "Example Corp" }
-          - { label: "Location", name: "location", widget: "string", default: "United States" }
+          - { label: "Your Name", name: "name", widget: "string", default: "Timothy M. Johnson" }
+          - { label: "Current Headline Role", name: "currentRole", widget: "string", default: "Technical Writer" }
+          - { label: "Current Headline Company", name: "currentCompany", widget: "string", default: "PayIt" }
+          - { label: "Location", name: "location", widget: "string", default: "Remote" }
+          - { label: "Email Address", name: "email", widget: "string", required: false, default: "tim@timothyjohnsonwrites.com" }
+          - { label: "Phone Number", name: "phone", widget: "string", required: false, default: "(618) 534-2098" }
+          - { label: "Portfolio URL", name: "portfolioUrl", widget: "string", required: false, default: "https://timothyjohnsonwrites.com" }
           - label: "Experience Timeline"
             name: "experience"
             widget: "list"
@@ -140,8 +143,8 @@ collections:
               - { label: "Company", name: "company", widget: "string" }
               - { label: "Company URL", name: "companyUrl", widget: "string", required: false }
               - { label: "Location", name: "location", widget: "string", default: "Remote" }
-              - { label: "Start Date", name: "start", widget: "string", hint: "e.g. Mar 2024" }
-              - { label: "End Date", name: "end", widget: "string", hint: "e.g. Present or Feb 2024" }
+              - { label: "Start Date", name: "start", widget: "string", hint: "e.g. Jul 2024" }
+              - { label: "End Date", name: "end", widget: "string", hint: "e.g. Present or Jun 2024" }
               - { label: "Is Current Role?", name: "current", widget: "boolean", default: false }
               - { label: "Summary", name: "summary", widget: "text", hint: "One-line summary of what you owned or led" }
               - { label: "Bullet Points", name: "bullets", widget: "list", field: { label: "Bullet", name: "bullet", widget: "string" } }
@@ -160,11 +163,11 @@ collections:
             widget: "list"
             required: false
             fields:
-              - { label: "Degree", name: "degree", widget: "string", hint: "e.g. B.S." }
-              - { label: "Field", name: "field", widget: "string", hint: "e.g. Computer Science" }
+              - { label: "Degree", name: "degree", widget: "string", hint: "e.g. Bachelor's Degree" }
+              - { label: "Field", name: "field", widget: "string", hint: "e.g. English" }
               - { label: "School", name: "school", widget: "string" }
-              - { label: "Start Year", name: "start", widget: "string" }
-              - { label: "End Year", name: "end", widget: "string" }
+              - { label: "Start Year", name: "start", widget: "string", required: false }
+              - { label: "End Year", name: "end", widget: "string", required: false }
           - label: "Skill Groups"
             name: "skillGroups"
             widget: "list"
