@@ -58,7 +58,7 @@ footerSocialLinks:
     url: mailto:tim@timothyjohnsonwrites.com
     show: true
   - label: Portfolio
-    url: https://timothyjohnsonwrites.com
+    url: https://portfolio.timothyjohnsonwrites.com
     show: true
   - label: RSS
     url: /rss.xml
