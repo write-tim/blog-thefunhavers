@@ -1,12 +1,12 @@
 ---
-greeting: "Hello, we're"
-firstName: "The"
-lastName: "Funhavers"
+greeting: Hello, I'm
+firstName: Timothy
+lastName: Johnson
 typingRoles:
-  - the funhavers
-  - weekend adventurers
-  - storytellers
-  - outdoor enthusiasts
-bio: "Pictures, or it didn't happen. Adventure is out there... let's go find it."
-avatar: /img/avatar.svg
+  - outdoor enthusiast
+  - weekend adventurer
+  - occasional photographer
+  - technical writer
+bio: Pictures, or it didn't happen. Adventure is out there... let's go find it.
+avatar: /assets/tim.jpeg
 ---
