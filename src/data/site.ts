@@ -32,7 +32,7 @@ export const site = {
   description:
     "Pictures, or it didn't happen. Adventure is out there... let's go find it.",
   /** Your production URL — no trailing slash. Used for canonical URLs, OG tags, RSS and sitemap */
-  url: 'https://blog.thefunhavers.club',
+  url: 'https://timothyjohnsonwrites.com',
   author: {
     name: 'Timothy M. Johnson',
     email: 'tim@timothyjohnsonwrites.com',
