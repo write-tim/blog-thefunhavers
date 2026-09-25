@@ -1,10 +1,15 @@
 ---
 title: Welcome to your new site
 subtitle: You cloned a theme — here's how to make it yours in ten minutes
-date: 2026-08-20
-tags: [meta]
-category: tech
 description: A quick tour of everything to edit in this Astro theme — site config, blog posts, the work page, and travel galleries.
+date: 2026-08-20
+updated: ''
+category: tech
+author: Timothy Johnson
+tags:
+  - meta
+coverImage: ''
+draft: true
 ---
 
 If you can see this post, the theme is working. Everything below lives under `src/` and takes plain markdown or one small TypeScript file each.
