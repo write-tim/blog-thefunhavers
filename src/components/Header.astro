@@ -81,7 +81,7 @@ const navItems = rawNavItems.filter(
 ---
 
 <header class="site-header" id="site-header">
-  <div class="container nav-bar">
+  <div class="container nav">
     <a class="brand" href={withBase('/')}>
       {brandPrefix && <span class="brand-prefix" aria-hidden="true">{brandPrefix}</span>}{' '}
       <span class="brand-name">{brandName}</span>
@@ -259,7 +259,7 @@ const navItems = rawNavItems.filter(
     border-bottom: 1px solid var(--border);
   }
 
-  .nav-bar {
+  .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -285,6 +285,20 @@ const navItems = rawNavItems.filter(
     color: var(--accent);
   }
 
+  /* List resets */
+  .nav-links,
+  .dropdown-menu,
+  .mobile-tree-list,
+  .mobile-sub-tree,
+  .nav-item,
+  .mobile-tree-item,
+  .mobile-sub-item {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin: 0;
+    padding: 0;
+  }
+
   /* Desktop Navigation */
   .desktop-nav {
     display: flex;
@@ -295,9 +309,6 @@ const navItems = rawNavItems.filter(
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
   }
 
   .nav-item {
@@ -319,6 +330,14 @@ const navItems = rawNavItems.filter(
     align-items: center;
     gap: 0.35rem;
     transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .dropdown-trigger {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    outline: none;
   }
 
   .nav-link:hover,
@@ -356,8 +375,6 @@ const navItems = rawNavItems.filter(
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
     padding: 0.35rem;
-    list-style: none;
-    margin: 0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4px);
@@ -404,6 +421,8 @@ const navItems = rawNavItems.filter(
   }
 
   .mobile-menu-btn {
+    appearance: none;
+    -webkit-appearance: none;
     display: grid;
     place-items: center;
     width: 36px;
@@ -414,6 +433,7 @@ const navItems = rawNavItems.filter(
     color: var(--text);
     cursor: pointer;
     transition: all 0.15s ease;
+    padding: 0;
   }
 
   .mobile-menu-btn:hover {
@@ -429,12 +449,17 @@ const navItems = rawNavItems.filter(
   /* Mobile Panel */
   .mobile-nav-panel {
     display: none;
-    background: color-mix(in srgb, var(--bg) 96%, transparent);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: color-mix(in srgb, var(--bg) 97%, transparent);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
     padding: 1.25rem 0 1.75rem;
+    z-index: 99;
   }
 
   .site-header.is-open .mobile-nav-panel {
@@ -450,9 +475,6 @@ const navItems = rawNavItems.filter(
   }
 
   .mobile-tree-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -486,9 +508,7 @@ const navItems = rawNavItems.filter(
   }
 
   .mobile-sub-tree {
-    list-style: none;
-    margin: 0;
-    padding: 0 0 0 0.5rem;
+    padding: 0 0 0 0.5rem !important;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -528,15 +548,23 @@ const navItems = rawNavItems.filter(
   /* Responsive Breakpoints */
   @media (max-width: 767.98px) {
     .desktop-nav {
-      display: none;
+      display: none !important;
     }
 
     .mobile-actions {
-      display: flex;
+      display: flex !important;
     }
   }
 
   @media (min-width: 768px) {
+    .desktop-nav {
+      display: flex !important;
+    }
+
+    .mobile-actions {
+      display: none !important;
+    }
+
     .mobile-nav-panel {
       display: none !important;
     }
