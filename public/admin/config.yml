@@ -423,7 +423,7 @@ collections:
           - { label: "Personal (Nest under Personal dropdown)", value: "personal" }
           - { label: "Professional (Nest under Professional dropdown)", value: "professional" }
           - { label: "Top Level (Add to main header bar)", value: "top" }
-        hint: "Where to automatically nest this page in the site menu."
+        hint: "Where to automatically nest this page in the site menu.",
       - {
           label: "Navigation Label (Optional)",
           name: "navLabel",
