@@ -34,20 +34,81 @@ const skillGroups = (workData?.skillGroups && workData.skillGroups.length > 0)
 const current = experience[0];
 const currentRole = workData?.currentRole ?? current?.role;
 const currentCompany = workData?.currentCompany ?? current?.company;
+const showLocation = workData?.showLocation ?? true;
 const location = workData?.location ?? site.author.location;
 
+const showPhone = workData?.showPhone ?? true;
 const phone = workData?.phone;
-const portfolioUrl = workData?.portfolioUrl;
 
-const links = [
-  ...(portfolioUrl ? [{ url: portfolioUrl, label: 'Portfolio' }] : []),
-  ...Object.values(site.socials).filter((s) => {
-    if (portfolioUrl && (s.url === portfolioUrl || s.label.toLowerCase() === 'portfolio')) {
-      return false;
+// Helper to format contact and social URLs
+const formatUrl = (url: string) => {
+  const trimmed = url.trim();
+  if (
+    trimmed.startsWith('http://') ||
+    trimmed.startsWith('https://') ||
+    trimmed.startsWith('mailto:') ||
+    trimmed.startsWith('tel:')
+  ) {
+    return trimmed;
+  }
+  if (trimmed.includes('@') && !trimmed.includes('/')) {
+    return `mailto:${trimmed}`;
+  }
+  if (/^[\d\s()+-]+$/.test(trimmed) && trimmed.replace(/\D/g, '').length >= 7) {
+    return `tel:${trimmed.replace(/[^0-9+]/g, '')}`;
+  }
+  return trimmed.startsWith('/') ? withBase(trimmed) : `https://${trimmed}`;
+};
+
+interface HeaderItem {
+  label: string;
+  url?: string;
+}
+
+const headerItems: HeaderItem[] = [];
+
+if (showLocation && location && location.trim().length > 0) {
+  headerItems.push({ label: location.trim() });
+}
+
+// Check if contactLinks already includes a phone number entry
+const hasPhoneInLinks = workData?.contactLinks?.some(
+  (l) => l.url.startsWith('tel:') || (phone && l.label.includes(phone))
+);
+
+if (showPhone && phone && phone.trim().length > 0 && !hasPhoneInLinks) {
+  headerItems.push({
+    label: phone.trim(),
+    url: `tel:${phone.replace(/[^0-9+]/g, '')}`,
+  });
+}
+
+if (workData?.contactLinks && Array.isArray(workData.contactLinks)) {
+  workData.contactLinks.forEach((link) => {
+    if (link.show !== false && link.label && link.label.trim().length > 0) {
+      headerItems.push({
+        label: link.label.trim(),
+        url: formatUrl(link.url),
+      });
     }
-    return s.url.startsWith('http') || s.url.startsWith('mailto');
-  }),
-];
+  });
+} else {
+  // Default fallback if contactLinks is not specified
+  if (workData?.portfolioUrl) {
+    headerItems.push({
+      label: 'Portfolio',
+      url: formatUrl(workData.portfolioUrl),
+    });
+  }
+  Object.values(site.socials).forEach((s) => {
+    if (s.url.startsWith('http') || s.url.startsWith('mailto')) {
+      headerItems.push({
+        label: s.label,
+        url: formatUrl(s.url),
+      });
+    }
+  });
+}
 ---
 
 <Layout
@@ -68,21 +129,26 @@ const links = [
           {currentRole} · {currentCompany}
         </p>
       )}
-      <p class="muted" style="margin: 0 0 1.5rem;">
-        {location}
-        {phone && (
-          <>
-            {' · '}
-            <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`}>{phone}</a>
-          </>
-        )}
-        {links.map((s) => (
-          <>
-            {' · '}
-            <a href={withBase(s.url)} target={s.url.startsWith('http') ? '_blank' : undefined} rel="noopener">{s.label}</a>
-          </>
-        ))}
-      </p>
+      {headerItems.length > 0 && (
+        <p class="muted" style="margin: 0 0 1.5rem;">
+          {headerItems.map((item, index) => (
+            <>
+              {index > 0 && ' · '}
+              {item.url ? (
+                <a
+                  href={item.url.startsWith('/') ? withBase(item.url) : item.url}
+                  target={item.url.startsWith('http') ? '_blank' : undefined}
+                  rel={item.url.startsWith('http') ? 'noopener' : undefined}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <span>{item.label}</span>
+              )}
+            </>
+          ))}
+        </p>
+      )}
 
       {WorkContent && workEntry?.body && workEntry.body.trim().length > 0 && (
         <div class="prose" style="margin-top: 1.5rem;">

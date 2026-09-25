@@ -132,9 +132,18 @@ collections:
           - { label: "Current Headline Role", name: "currentRole", widget: "string", default: "Technical Writer" }
           - { label: "Current Headline Company", name: "currentCompany", widget: "string", default: "PayIt" }
           - { label: "Location", name: "location", widget: "string", default: "Remote" }
-          - { label: "Email Address", name: "email", widget: "string", required: false, default: "tim@timothyjohnsonwrites.com" }
-          - { label: "Phone Number", name: "phone", widget: "string", required: false, default: "(618) 534-2098" }
-          - { label: "Portfolio URL", name: "portfolioUrl", widget: "string", required: false, default: "https://timothyjohnsonwrites.com" }
+          - { label: "Show Location in Header?", name: "showLocation", widget: "boolean", default: true }
+          - { label: "Phone Number", name: "phone", widget: "string", required: false, default: "(618) 534-2098", hint: "e.g. (618) 534-2098. Can be toggled on/off below." }
+          - { label: "Show Phone Number in Header?", name: "showPhone", widget: "boolean", default: true }
+          - label: "Header Contact & Social Links"
+            name: "contactLinks"
+            widget: "list"
+            required: false
+            hint: "Custom links displayed in the header row (Portfolio, GitHub, Email, LinkedIn, etc.). Add, remove, reorder, or toggle visibility."
+            fields:
+              - { label: "Link Label", name: "label", widget: "string", hint: "e.g. Portfolio, GitHub, Email, LinkedIn" }
+              - { label: "Link URL", name: "url", widget: "string", hint: "e.g. https://..., mailto:..., or tel:..." }
+              - { label: "Show in Header?", name: "show", widget: "boolean", default: true }
           - label: "Experience Timeline"
             name: "experience"
             widget: "list"

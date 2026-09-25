@@ -52,9 +52,20 @@ const pages = defineCollection({
       currentRole: z.string().optional(),
       currentCompany: z.string().optional(),
       location: z.string().optional(),
+      showLocation: z.boolean().default(true),
       email: z.string().optional(),
       phone: z.string().optional(),
+      showPhone: z.boolean().default(true),
       portfolioUrl: z.string().optional(),
+      contactLinks: z
+        .array(
+          z.object({
+            label: z.string(),
+            url: z.string(),
+            show: z.boolean().default(true),
+          })
+        )
+        .optional(),
       experience: z
         .array(
           z.object({

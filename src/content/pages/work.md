@@ -4,6 +4,19 @@ name: Timothy M. Johnson
 currentRole: Technical Writer
 currentCompany: PayIt
 location: Remote
+showLocation: true
+phone: "(618) 534-2098"
+showPhone: true
+contactLinks:
+  - label: "Portfolio"
+    url: "https://timothyjohnsonwrites.com"
+    show: true
+  - label: "GitHub"
+    url: "https://github.com/write-tim/blog-thefunhavers"
+    show: true
+  - label: "Email"
+    url: "mailto:tim@timothyjohnsonwrites.com"
+    show: true
 experience:
   - role: Technical Writer
     company: PayIt
@@ -130,9 +143,6 @@ skillGroups:
       - SaaS
       - Jira
       - Confluence
-email: tim@timothyjohnsonwrites.com
-phone: (618) 534-2098
-portfolioUrl: https://timothyjohnsonwrites.com
 ---
 
 Seasoned writer and accomplished video content creator with over a decade of experience in content design, technical writing, and multimedia storytelling. Proficient in crafting compelling narratives and developing high-quality content across various media platforms. Skilled in managing end-to-end content creation processes, from ideation and scripting to final production and documentation. Expertise includes software documentation, instructional design, and integrating AI technologies to optimize content creation workflows. Adept at collaborating with cross-functional teams to deliver impactful, user-friendly content that meets strategic objectives. Working remotely since 2013, I’m known for meticulous attention to detail, strong communication skills, and a proactive approach to achieving project goals.
