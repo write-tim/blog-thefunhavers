@@ -1,35 +1,73 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 import { site, withBase } from '../data/site';
+import { getEntry } from 'astro:content';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/work', label: 'Work' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/travel', label: 'Travel' },
-].map((l) => ({ ...l, href: withBase(l.href) }));
+const headerFooterEntry = await getEntry('pages', 'header-footer');
+const hfData = headerFooterEntry?.data;
+
+const brandName = hfData?.brandName ?? site.shortTitle;
+const brandPrefix = hfData?.brandPrefix ?? '>';
+const brandSuffix = hfData?.brandSuffix ?? '_';
+const showThemeToggle = hfData?.showThemeToggle ?? true;
+
+const defaultNavLinks = [
+  { href: '/', label: 'Home', show: true },
+  { href: '/work', label: 'Work', show: true },
+  { href: '/blog', label: 'Blog', show: true },
+  { href: '/travel', label: 'Travel', show: true },
+];
+
+const rawNavLinks = (hfData?.navLinks && Array.isArray(hfData.navLinks) && hfData.navLinks.length > 0)
+  ? hfData.navLinks.map((l) => ({ href: l.url, label: l.label, show: l.show !== false }))
+  : defaultNavLinks;
+
+const navLinks = rawNavLinks
+  .filter((l) => l.show !== false && l.label && l.label.trim().length > 0)
+  .map((l) => ({
+    ...l,
+    href: l.href.startsWith('http') || l.href.startsWith('mailto:') || l.href.startsWith('tel:')
+      ? l.href
+      : withBase(l.href),
+    isExternal: l.href.startsWith('http'),
+  }));
+
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => {
+  const normalizedCurrent = currentPath.replace(/\/+$/, '') || '/';
+  const normalizedHref = href.replace(/\/+$/, '') || '/';
+  return normalizedCurrent === normalizedHref;
+};
 ---
 
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href={withBase('/')}>
-      <span aria-hidden="true">&gt;</span> {site.shortTitle}
-      <span>_</span>
+      {brandPrefix && <span aria-hidden="true">{brandPrefix}</span>}{' '}
+      {brandName}
+      {brandSuffix && <span>{brandSuffix}</span>}
     </a>
     <nav aria-label="Main">
       <ul class="nav-links">
         {
           navLinks.map((l) => (
             <li>
-              <a href={l.href} aria-current={Astro.url.pathname === l.href ? 'page' : undefined}>
+              <a
+                href={l.href}
+                aria-current={isCurrent(l.href) ? 'page' : undefined}
+                target={l.isExternal ? '_blank' : undefined}
+                rel={l.isExternal ? 'noopener' : undefined}
+              >
                 {l.label}
               </a>
             </li>
           ))
         }
-        <li>
-          <ThemeToggle />
-        </li>
+        {showThemeToggle && (
+          <li>
+            <ThemeToggle />
+          </li>
+        )}
       </ul>
     </nav>
   </div>

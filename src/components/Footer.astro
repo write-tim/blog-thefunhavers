@@ -1,22 +1,100 @@
 ---
 import { site, withBase } from '../data/site';
+import { getEntry } from 'astro:content';
+
+const headerFooterEntry = await getEntry('pages', 'header-footer');
+const hfData = headerFooterEntry?.data;
+
+const showFooterNav = hfData?.showFooterNav ?? true;
+const showFooterSocials = hfData?.showFooterSocials ?? true;
+
+const defaultNavLinks = [
+  { href: '/', label: 'Home', show: true },
+  { href: '/work', label: 'Work', show: true },
+  { href: '/blog', label: 'Blog', show: true },
+  { href: '/travel', label: 'Travel', show: true },
+];
+
+const rawFooterNav =
+  hfData?.footerNavLinks && Array.isArray(hfData.footerNavLinks) && hfData.footerNavLinks.length > 0
+    ? hfData.footerNavLinks.map((l) => ({ href: l.url, label: l.label, show: l.show !== false }))
+    : hfData?.navLinks && Array.isArray(hfData.navLinks) && hfData.navLinks.length > 0
+      ? hfData.navLinks.map((l) => ({ href: l.url, label: l.label, show: l.show !== false }))
+      : defaultNavLinks;
+
+const footerNav = rawFooterNav
+  .filter((l) => l.show !== false && l.label && l.label.trim().length > 0)
+  .map((l) => ({
+    ...l,
+    href:
+      l.href.startsWith('http') || l.href.startsWith('mailto:') || l.href.startsWith('tel:')
+        ? l.href
+        : withBase(l.href),
+    isExternal: l.href.startsWith('http'),
+  }));
+
+const defaultSocialLinks = Object.values(site.socials).map((s) => ({
+  href: s.url,
+  label: s.label,
+  show: true,
+}));
+
+const rawFooterSocials =
+  hfData?.footerSocialLinks &&
+  Array.isArray(hfData.footerSocialLinks) &&
+  hfData.footerSocialLinks.length > 0
+    ? hfData.footerSocialLinks.map((l) => ({ href: l.url, label: l.label, show: l.show !== false }))
+    : defaultSocialLinks;
+
+const footerSocials = rawFooterSocials
+  .filter((s) => s.show !== false && s.label && s.label.trim().length > 0)
+  .map((s) => ({
+    ...s,
+    href:
+      s.href.startsWith('http') || s.href.startsWith('mailto:') || s.href.startsWith('tel:')
+        ? s.href
+        : withBase(s.href),
+    isExternal: s.href.startsWith('http'),
+  }));
+
+const currentYear = new Date().getFullYear().toString();
+const defaultCopyright = `© {year} ${site.author.name} · ${site.author.location}`;
+const rawCopyright = hfData?.copyrightText || defaultCopyright;
+const copyright = rawCopyright.replace(/\{year\}/g, currentYear);
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <ul class="footer-links">
-      <li><a href={withBase('/')}>Home</a></li>
-      <li><a href={withBase('/work')}>Work</a></li>
-      <li><a href={withBase('/blog')}>Blog</a></li>
-      <li><a href={withBase('/travel')}>Travel</a></li>
-    </ul>
-    <ul class="footer-links">
-      {Object.values(site.socials).map((s) => (
-        <li>
-          <a href={withBase(s.url)} target={s.url.startsWith('http') ? '_blank' : undefined} rel="noopener">{s.label}</a>
-        </li>
-      ))}
-    </ul>
-    <p>© {new Date().getFullYear()} {site.author.name} · {site.author.location}</p>
+    {showFooterNav && footerNav.length > 0 && (
+      <ul class="footer-links">
+        {footerNav.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              target={l.isExternal ? '_blank' : undefined}
+              rel={l.isExternal ? 'noopener' : undefined}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    {showFooterSocials && footerSocials.length > 0 && (
+      <ul class="footer-links">
+        {footerSocials.map((s) => (
+          <li>
+            <a
+              href={s.href}
+              target={s.isExternal ? '_blank' : undefined}
+              rel={s.isExternal ? 'noopener' : undefined}
+            >
+              {s.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    {copyright && copyright.trim().length > 0 && <p>{copyright}</p>}
   </div>
 </footer>

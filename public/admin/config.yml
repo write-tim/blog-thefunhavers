@@ -220,5 +220,53 @@ collections:
               required: false,
               hint: "Introductory paragraph or work philosophy displayed on the work page.",
             }
+      - name: "header_footer"
+        label: "Global Header & Footer"
+        file: "src/content/pages/header-footer.md"
+        fields:
+          # Header settings
+          - { label: "Brand Name", name: "brandName", widget: "string", default: "thefunhavers", hint: "Displayed in the top left of the header." }
+          - { label: "Brand Prefix", name: "brandPrefix", widget: "string", default: ">", required: false, hint: "Symbol before brand name (e.g. >)" }
+          - { label: "Brand Suffix / Cursor", name: "brandSuffix", widget: "string", default: "_", required: false, hint: "Symbol after brand name (e.g. _)" }
+          - { label: "Show Dark/Light Theme Toggle?", name: "showThemeToggle", widget: "boolean", default: true }
+          - label: "Header Navigation Links"
+            name: "navLinks"
+            widget: "list"
+            hint: "Navigation links in the top header. Add, edit, delete, reorder, or toggle visibility."
+            fields:
+              - { label: "Link Label", name: "label", widget: "string", hint: "e.g. Home, Work, Blog, Travel" }
+              - { label: "Link URL", name: "url", widget: "string", hint: "e.g. /, /work, /blog, /travel, or https://..." }
+              - { label: "Visible in Header?", name: "show", widget: "boolean", default: true }
+
+          # Footer settings
+          - { label: "Show Footer Navigation Links?", name: "showFooterNav", widget: "boolean", default: true }
+          - label: "Footer Navigation Links (Row 1)"
+            name: "footerNavLinks"
+            widget: "list"
+            required: false
+            hint: "Top row of links in the footer. If left empty, mirrors the header navigation links."
+            fields:
+              - { label: "Link Label", name: "label", widget: "string", hint: "e.g. Home, Work, Blog, Travel" }
+              - { label: "Link URL", name: "url", widget: "string", hint: "e.g. /, /work, /blog, /travel, or https://..." }
+              - { label: "Visible in Footer?", name: "show", widget: "boolean", default: true }
+
+          - { label: "Show Footer Social / External Links?", name: "showFooterSocials", widget: "boolean", default: true }
+          - label: "Footer Social & External Links (Row 2)"
+            name: "footerSocialLinks"
+            widget: "list"
+            required: false
+            hint: "Second row of links in the footer (GitHub, Email, Portfolio, RSS, LinkedIn, etc.)."
+            fields:
+              - { label: "Link Label", name: "label", widget: "string", hint: "e.g. GitHub, Email, Portfolio, RSS, LinkedIn" }
+              - { label: "Link URL", name: "url", widget: "string", hint: "e.g. https://github.com/..., mailto:..., or https://..." }
+              - { label: "Visible in Footer?", name: "show", widget: "boolean", default: true }
+
+          - {
+              label: "Copyright Text",
+              name: "copyrightText",
+              widget: "string",
+              default: "© {year} Timothy M. Johnson · United States",
+              hint: "Use {year} to automatically output the current calendar year.",
+            }
 
 

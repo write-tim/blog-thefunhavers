@@ -121,6 +121,42 @@ const pages = defineCollection({
           })
         )
         .optional(),
+
+      // Global Header & Footer fields
+      brandName: z.string().optional(),
+      brandPrefix: z.string().optional(),
+      brandSuffix: z.string().optional(),
+      showThemeToggle: z.boolean().default(true),
+      navLinks: z
+        .array(
+          z.object({
+            label: z.string(),
+            url: z.string(),
+            show: z.boolean().default(true),
+          })
+        )
+        .optional(),
+      showFooterNav: z.boolean().default(true),
+      footerNavLinks: z
+        .array(
+          z.object({
+            label: z.string(),
+            url: z.string(),
+            show: z.boolean().default(true),
+          })
+        )
+        .optional(),
+      showFooterSocials: z.boolean().default(true),
+      footerSocialLinks: z
+        .array(
+          z.object({
+            label: z.string(),
+            url: z.string(),
+            show: z.boolean().default(true),
+          })
+        )
+        .optional(),
+      copyrightText: z.string().optional(),
     }),
 });
 
