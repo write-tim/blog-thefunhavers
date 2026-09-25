@@ -10,7 +10,7 @@ showPhone: false
 contactLinks:
   - label: Portfolio
     url: https://timothyjohnsonwrites.com
-    show: false
+    show: true
   - label: Email
     url: mailto:tim@timothyjohnsonwrites.com
     show: true
