@@ -137,8 +137,17 @@ const pages = defineCollection({
         .array(
           z.object({
             label: z.string(),
-            url: z.string(),
+            url: z.string().optional(),
             show: z.boolean().default(true),
+            children: z
+              .array(
+                z.object({
+                  label: z.string(),
+                  url: z.string(),
+                  show: z.boolean().default(true),
+                })
+              )
+              .optional(),
           })
         )
         .optional(),
@@ -147,8 +156,17 @@ const pages = defineCollection({
         .array(
           z.object({
             label: z.string(),
-            url: z.string(),
+            url: z.string().optional(),
             show: z.boolean().default(true),
+            children: z
+              .array(
+                z.object({
+                  label: z.string(),
+                  url: z.string(),
+                  show: z.boolean().default(true),
+                })
+              )
+              .optional(),
           })
         )
         .optional(),

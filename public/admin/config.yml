@@ -264,11 +264,20 @@ collections:
           - label: "Header Navigation Links"
             name: "navLinks"
             widget: "list"
-            hint: "Navigation links in the top header. Add, edit, delete, reorder, or toggle visibility."
+            hint: "Top navigation items. Can be direct links (Home) or dropdown folders with sub-links (Personal, Professional)."
             fields:
-              - { label: "Link Label", name: "label", widget: "string", hint: "e.g. Home, Work, Blog, Travel" }
-              - { label: "Link URL", name: "url", widget: "string", hint: "e.g. /, /work, /blog, /travel, or https://..." }
+              - { label: "Link Label", name: "label", widget: "string", hint: "e.g. Home, Personal, Professional" }
+              - { label: "Link URL", name: "url", widget: "string", required: false, hint: "e.g. /, /work. Leave blank if this is a dropdown parent group." }
               - { label: "Visible in Header?", name: "show", widget: "boolean", default: true }
+              - label: "Dropdown Sub-Links"
+                name: "children"
+                widget: "list"
+                required: false
+                hint: "Add sub-links under this dropdown menu."
+                fields:
+                  - { label: "Sub-link Label", name: "label", widget: "string", hint: "e.g. Blog, Travel, Work, Projects" }
+                  - { label: "Sub-link URL", name: "url", widget: "string", hint: "e.g. /blog, /travel" }
+                  - { label: "Visible?", name: "show", widget: "boolean", default: true }
 
           # Footer settings
           - { label: "Show Footer Navigation Links?", name: "showFooterNav", widget: "boolean", default: true }
@@ -279,7 +288,7 @@ collections:
             hint: "Top row of links in the footer. If left empty, mirrors the header navigation links."
             fields:
               - { label: "Link Label", name: "label", widget: "string", hint: "e.g. Home, Work, Blog, Travel" }
-              - { label: "Link URL", name: "url", widget: "string", hint: "e.g. /, /work, /blog, /travel, or https://..." }
+              - { label: "Link URL", name: "url", widget: "string", required: false, hint: "e.g. /, /work, /blog, /travel, or https://..." }
               - { label: "Visible in Footer?", name: "show", widget: "boolean", default: true }
 
           - { label: "Show Footer Social / External Links?", name: "showFooterSocials", widget: "boolean", default: true }

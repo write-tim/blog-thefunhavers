@@ -14,15 +14,24 @@ navLinks:
   - label: Home
     url: /
     show: true
-  - label: Work
-    url: /work
+  - label: Personal
     show: true
-  - label: Blog
-    url: /blog
+    children:
+      - label: Blog
+        url: /blog
+        show: true
+      - label: Travel
+        url: /travel
+        show: true
+  - label: Professional
     show: true
-  - label: Travel
-    url: /travel
-    show: true
+    children:
+      - label: Work
+        url: /work
+        show: true
+      - label: Projects
+        url: /projects
+        show: true
 showFooterNav: true
 footerNavLinks:
   - label: Home
@@ -30,6 +39,9 @@ footerNavLinks:
     show: true
   - label: Work
     url: /work
+    show: true
+  - label: Projects
+    url: /projects
     show: true
   - label: Blog
     url: /blog

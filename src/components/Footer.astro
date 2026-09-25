@@ -15,11 +15,28 @@ const defaultNavLinks = [
   { href: '/travel', label: 'Travel', show: true },
 ];
 
+const flattenNav = (items: any[]) => {
+  const result: { href: string; label: string; show: boolean }[] = [];
+  for (const item of items) {
+    if (item.show === false) continue;
+    if (item.children && Array.isArray(item.children) && item.children.length > 0) {
+      for (const child of item.children) {
+        if (child.show !== false && child.url) {
+          result.push({ href: child.url, label: child.label, show: true });
+        }
+      }
+    } else if (item.url) {
+      result.push({ href: item.url, label: item.label, show: true });
+    }
+  }
+  return result;
+};
+
 const rawFooterNav =
   hfData?.footerNavLinks && Array.isArray(hfData.footerNavLinks) && hfData.footerNavLinks.length > 0
-    ? hfData.footerNavLinks.map((l) => ({ href: l.url, label: l.label, show: l.show !== false }))
+    ? flattenNav(hfData.footerNavLinks)
     : hfData?.navLinks && Array.isArray(hfData.navLinks) && hfData.navLinks.length > 0
-      ? hfData.navLinks.map((l) => ({ href: l.url, label: l.label, show: l.show !== false }))
+      ? flattenNav(hfData.navLinks)
       : defaultNavLinks;
 
 const footerNav = rawFooterNav
