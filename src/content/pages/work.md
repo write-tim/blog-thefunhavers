@@ -5,17 +5,14 @@ currentRole: Technical Writer
 currentCompany: PayIt
 location: Remote
 showLocation: true
-phone: "(618) 534-2098"
-showPhone: true
+phone: (618) 534-2098
+showPhone: false
 contactLinks:
-  - label: "Portfolio"
-    url: "https://timothyjohnsonwrites.com"
-    show: true
-  - label: "GitHub"
-    url: "https://github.com/write-tim/blog-thefunhavers"
-    show: true
-  - label: "Email"
-    url: "mailto:tim@timothyjohnsonwrites.com"
+  - label: Portfolio
+    url: https://timothyjohnsonwrites.com
+    show: false
+  - label: Email
+    url: mailto:tim@timothyjohnsonwrites.com
     show: true
 experience:
   - role: Technical Writer
