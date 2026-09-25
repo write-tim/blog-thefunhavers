@@ -7,7 +7,7 @@ typingRoles:
   - weekend adventurer
   - occasional photographer
   - technical writer
-bio: Pictures, or it didn't happen. Adventure is out there... let's go find it.
+bio: Adventure is out there.
 avatar: /assets/tim.jpeg
 ---
 
