@@ -116,6 +116,35 @@ collections:
               default: "/img/avatar.svg",
               required: false,
             }
+          - label: "Hero Buttons / Social Links"
+            name: "buttons"
+            widget: "list"
+            required: false
+            hint: "Buttons shown under your bio in the hero card. Add, edit, delete, reorder, or toggle visibility."
+            fields:
+              - { label: "Button Label", name: "label", widget: "string", hint: "e.g. GitHub, Email, Portfolio, RSS, LinkedIn" }
+              - { label: "Button Link (URL)", name: "url", widget: "string", hint: "e.g. https://github.com/..., mailto:..., /work, /resume/Resume.pdf" }
+              - label: "Icon"
+                name: "icon"
+                widget: "select"
+                required: false
+                default: "auto"
+                options:
+                  - { label: "Auto-detect (from label/URL)", value: "auto" }
+                  - { label: "GitHub", value: "github" }
+                  - { label: "LinkedIn", value: "linkedin" }
+                  - { label: "Email", value: "email" }
+                  - { label: "Portfolio / Website (Globe)", value: "globe" }
+                  - { label: "RSS Feed", value: "rss" }
+                  - { label: "YouTube", value: "youtube" }
+                  - { label: "X / Twitter", value: "x" }
+                  - { label: "Instagram", value: "instagram" }
+                  - { label: "Download / PDF", value: "download" }
+                  - { label: "Document / Resume (File)", value: "file-text" }
+                  - { label: "Phone", value: "phone" }
+                  - { label: "Arrow Right (Link)", value: "arrow-right" }
+                  - { label: "None (Text Only)", value: "none" }
+              - { label: "Visible?", name: "show", widget: "boolean", default: true }
           - {
               label: "Additional Content (Optional)",
               name: "body",

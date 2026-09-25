@@ -18,6 +18,53 @@ const rolesJson = JSON.stringify(roles);
 
 const bio = homeData?.bio ?? homeData?.description ?? site.description;
 const avatar = homeData?.avatar || '/img/avatar.svg';
+
+export interface HeroButton {
+  label: string;
+  url: string;
+  icon?: string;
+  show?: boolean;
+}
+
+const defaultButtons: HeroButton[] = Object.values(site.socials).map((s) => ({
+  label: s.label,
+  url: s.url,
+  icon: s.icon,
+  show: true,
+}));
+
+const buttons: HeroButton[] =
+  homeData?.buttons && Array.isArray(homeData.buttons) && homeData.buttons.length > 0
+    ? homeData.buttons
+    : defaultButtons;
+
+// Helper to determine the icon name
+const resolveIcon = (icon?: string, label = '', url = '') => {
+  if (icon === 'none') return null;
+  if (icon && icon !== 'auto') return icon;
+
+  const text = `${label} ${url}`.toLowerCase();
+  if (text.includes('github')) return 'github';
+  if (text.includes('linkedin')) return 'linkedin';
+  if (text.includes('instagram')) return 'instagram';
+  if (text.includes('youtube') || text.includes('youtu.be')) return 'youtube';
+  if (text.includes('twitter') || text.includes('x.com')) return 'x';
+  if (text.includes('mail') || text.includes('@')) return 'email';
+  if (text.includes('rss') || text.includes('feed')) return 'rss';
+  if (text.includes('phone') || text.includes('tel:')) return 'phone';
+  if (url.endsWith('.pdf') || text.includes('download')) return 'download';
+  if (text.includes('resume') || text.includes('cv')) return 'file-text';
+  if (
+    text.includes('portfolio') ||
+    text.includes('blog') ||
+    text.includes('site') ||
+    text.includes('web')
+  ) {
+    return 'globe';
+  }
+  if (url.startsWith('http') || url.startsWith('/')) return 'arrow-right';
+  return null;
+};
 ---
 
 <section class="hero">
@@ -35,12 +82,23 @@ const avatar = homeData?.avatar || '/img/avatar.svg';
       </p>
 
       <div class="social-row">
-        {Object.values(site.socials).map((s) => (
-          <a class="social-link" href={withBase(s.url)} target={s.url.startsWith('http') ? '_blank' : undefined} rel="noopener">
-            {s.icon && <Icon name={s.icon} />}
-            {s.label}
-          </a>
-        ))}
+        {buttons
+          .filter((b) => b.show !== false && b.label && b.label.trim().length > 0)
+          .map((b) => {
+            const iconName = resolveIcon(b.icon, b.label, b.url);
+            const isExternal = b.url.startsWith('http');
+            return (
+              <a
+                class="social-link"
+                href={withBase(b.url)}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener' : undefined}
+              >
+                {iconName && <Icon name={iconName as any} />}
+                {b.label}
+              </a>
+            );
+          })}
       </div>
     </div>
 

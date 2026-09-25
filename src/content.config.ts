@@ -45,6 +45,16 @@ const pages = defineCollection({
       bio: z.string().optional(),
       description: z.string().optional(),
       avatar: z.string().optional(),
+      buttons: z
+        .array(
+          z.object({
+            label: z.string(),
+            url: z.string(),
+            icon: z.string().optional().default('auto'),
+            show: z.boolean().default(true),
+          })
+        )
+        .optional(),
 
       // Work page fields
       title: z.string().optional(),
