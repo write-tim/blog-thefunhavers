@@ -1,8 +1,11 @@
 ---
-siteTitle: Timothy M. Johnson
-tabTitleSuffix: Timothy M. Johnson
-favicon: /assets/favicon.svg
-siteDescription: Pictures, or it didn't happen. Adventure is out there... let's go find it.
+# Site Identity & Browser Tab
+siteTitle: "The Funhavers"
+tabTitleSuffix: "thefunhavers"
+favicon: "/assets/favicon.svg"
+siteDescription: "Pictures, or it didn't happen. Adventure is out there... let's go find it."
+
+# Global Header
 brandName: Timothy M. Johnson
 brandPrefix: '>'
 brandSuffix: _
@@ -13,9 +16,6 @@ navLinks:
     show: true
   - label: Work
     url: /work
-    show: true
-  - label: Projects
-    url: /projects
     show: true
   - label: Blog
     url: /blog
@@ -30,9 +30,6 @@ footerNavLinks:
     show: true
   - label: Work
     url: /work
-    show: true
-  - label: Projects
-    url: /projects
     show: true
   - label: Blog
     url: /blog
