@@ -6,6 +6,7 @@ typingRoles:
   - husband
   - dad
   - national park enthusiast
+  - slow runner
   - occasional photographer
   - writer
 bio: Adventure is out there.
