@@ -3,10 +3,11 @@ greeting: Hello, I'm
 firstName: Timothy
 lastName: Johnson
 typingRoles:
-  - outdoor enthusiast
-  - weekend adventurer
+  - husband
+  - dad
   - occasional photographer
-  - technical writer
+  - outdoor enthusiast
+  - writer
 bio: Adventure is out there.
 avatar: /assets/tim.jpeg
 buttons:
