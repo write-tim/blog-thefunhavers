@@ -122,6 +122,12 @@ const pages = defineCollection({
         )
         .optional(),
 
+      // Site Identity & Browser Tab fields
+      siteTitle: z.string().optional(),
+      tabTitleSuffix: z.string().optional(),
+      favicon: z.string().optional(),
+      siteDescription: z.string().optional(),
+
       // Global Header & Footer fields
       brandName: z.string().optional(),
       brandPrefix: z.string().optional(),

@@ -1,4 +1,11 @@
 ---
+# Site Identity & Browser Tab
+siteTitle: "The Funhavers"
+tabTitleSuffix: "thefunhavers"
+favicon: "/assets/favicon.svg"
+siteDescription: "Pictures, or it didn't happen. Adventure is out there... let's go find it."
+
+# Global Header
 brandName: Timothy M. Johnson
 brandPrefix: '>'
 brandSuffix: _

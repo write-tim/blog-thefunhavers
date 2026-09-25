@@ -5,6 +5,7 @@ import '../styles/global.css';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import { site, withBase } from '../data/site';
+import { getEntry } from 'astro:content';
 
 interface Props {
   title?: string;
@@ -16,9 +17,16 @@ interface Props {
   jsonLd?: object;
 }
 
+const headerFooterEntry = await getEntry('pages', 'header-footer');
+const hfData = headerFooterEntry?.data;
+
+const siteTitle = hfData?.siteTitle || site.title;
+const tabSuffix = hfData?.tabTitleSuffix || site.shortTitle;
+const favicon = hfData?.favicon || '/assets/favicon.svg';
+
 const {
   title,
-  description = site.description,
+  description = hfData?.siteDescription || site.description,
   image = '/img/og.jpg',
   type = 'website',
   canonical = site.url + Astro.url.pathname,
@@ -26,8 +34,18 @@ const {
   jsonLd,
 } = Astro.props;
 
-const pageTitle = title ? `${title} · ${site.shortTitle}` : site.title;
+const pageTitle = title ? `${title} · ${tabSuffix}` : siteTitle;
 const imageUrl = withBase(image);
+const faviconUrl = withBase(favicon);
+
+const getFaviconType = (path: string) => {
+  if (path.endsWith('.svg')) return 'image/svg+xml';
+  if (path.endsWith('.png')) return 'image/png';
+  if (path.endsWith('.ico')) return 'image/x-icon';
+  if (path.endsWith('.webp')) return 'image/webp';
+  if (path.endsWith('.jpg') || path.endsWith('.jpeg')) return 'image/jpeg';
+  return 'image/x-icon';
+};
 ---
 
 <!doctype html>
@@ -39,15 +57,17 @@ const imageUrl = withBase(image);
     <meta name="description" content={description} />
     <meta name="author" content={site.author.name} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
-    <link rel="icon" type="image/x-icon" href={withBase('/favicon.ico')} />
-    <link rel="alternate" type="application/rss+xml" title={site.title} href={withBase('/rss.xml')} />
+    <link rel="icon" type={getFaviconType(favicon)} href={faviconUrl} />
+    {favicon.endsWith('.svg') && (
+      <link rel="icon" type="image/x-icon" href={withBase('/favicon.ico')} />
+    )}
+    <link rel="alternate" type="application/rss+xml" title={siteTitle} href={withBase('/rss.xml')} />
     <meta name="generator" content={Astro.generator} />
 
     {noindex && <meta name="robots" content="noindex" />}
 
     <!-- Open Graph -->
-    <meta property="og:site_name" content={site.title} />
+    <meta property="og:site_name" content={siteTitle} />
     <meta property="og:type" content={type} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />

@@ -221,9 +221,41 @@ collections:
               hint: "Introductory paragraph or work philosophy displayed on the work page.",
             }
       - name: "header_footer"
-        label: "Global Header & Footer"
+        label: "Site Identity, Header & Footer"
         file: "src/content/pages/header-footer.md"
         fields:
+          # Site Identity & Browser Tab
+          - {
+              label: "Site Name (Home Page Tab Title)",
+              name: "siteTitle",
+              widget: "string",
+              default: "The Funhavers",
+              hint: "Title displayed in the browser tab on the home page, and used for OpenGraph / RSS.",
+            }
+          - {
+              label: "Tab Title Suffix (Subpages)",
+              name: "tabTitleSuffix",
+              widget: "string",
+              default: "thefunhavers",
+              hint: "Text appended to subpage titles in the browser tab (e.g. 'Work · thefunhavers', 'Blog · thefunhavers').",
+            }
+          - {
+              label: "Favicon Image",
+              name: "favicon",
+              widget: "image",
+              default: "/assets/favicon.svg",
+              required: false,
+              hint: "Upload an SVG, PNG, or ICO image to display as the site favicon in the browser tab.",
+            }
+          - {
+              label: "Default Meta Description",
+              name: "siteDescription",
+              widget: "text",
+              required: false,
+              default: "Pictures, or it didn't happen. Adventure is out there... let's go find it.",
+              hint: "Default search engine and social preview description.",
+            }
+
           # Header settings
           - { label: "Brand Name", name: "brandName", widget: "string", default: "thefunhavers", hint: "Displayed in the top left of the header." }
           - { label: "Brand Prefix", name: "brandPrefix", widget: "string", default: ">", required: false, hint: "Symbol before brand name (e.g. >)" }
