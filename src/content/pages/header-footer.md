@@ -14,6 +14,9 @@ navLinks:
   - label: Work
     url: /work
     show: true
+  - label: Projects
+    url: /projects
+    show: true
   - label: Blog
     url: /blog
     show: true
@@ -27,6 +30,9 @@ footerNavLinks:
     show: true
   - label: Work
     url: /work
+    show: true
+  - label: Projects
+    url: /projects
     show: true
   - label: Blog
     url: /blog

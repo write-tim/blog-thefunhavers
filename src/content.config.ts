@@ -128,6 +128,32 @@ const pages = defineCollection({
       favicon: z.string().optional(),
       siteDescription: z.string().optional(),
 
+      // Projects page fields
+      eyebrow: z.string().optional(),
+      intro: z.string().optional(),
+      projects: z
+        .array(
+          z.object({
+            title: z.string(),
+            url: z.string().optional(),
+            linkText: z.string().optional(),
+            focus: z.string().optional(),
+            overview: z.string().optional(),
+            techStack: z.array(z.string()).default([]),
+            challenge: z.string().optional(),
+            featuresTitle: z.string().optional(),
+            features: z
+              .array(
+                z.object({
+                  title: z.string(),
+                  description: z.string(),
+                })
+              )
+              .default([]),
+          })
+        )
+        .optional(),
+
       // Global Header & Footer fields
       brandName: z.string().optional(),
       brandPrefix: z.string().optional(),

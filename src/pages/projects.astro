@@ -1,0 +1,288 @@
+---
+import Layout from '../components/Layout.astro';
+import { getEntry, render } from 'astro:content';
+
+const projectsEntry = await getEntry('pages', 'projects');
+const projectsData = projectsEntry?.data;
+const renderedProjects = projectsEntry ? await render(projectsEntry) : null;
+const ProjectsContent = renderedProjects?.Content;
+
+const pageTitle = projectsData?.title ?? 'Projects';
+const eyebrow = projectsData?.eyebrow ?? 'Case Studies & Architecture';
+const intro = projectsData?.intro;
+const projects = projectsData?.projects ?? [];
+
+// Format paragraphs for the intro
+const introParagraphs = intro
+  ? intro.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean)
+  : [];
+---
+
+<Layout
+  title={pageTitle}
+  description={introParagraphs[0] ?? 'Featured software documentation, architecture, and engineering projects.'}
+  image="/img/og.jpg"
+>
+  <section class="section">
+    <div class="container">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class="page-title">{pageTitle}</h1>
+      {introParagraphs.length > 0 && (
+        <div class="projects-lead">
+          {introParagraphs.map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  {projects.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <div class="case-study-list">
+          {projects.map((item) => (
+            <article class="case-study-card">
+              <header class="case-study-header">
+                <div class="case-study-title-row">
+                  <h2 class="case-study-title">
+                    {item.url ? (
+                      <a href={item.url} target="_blank" rel="noopener noreferrer">
+                        {item.title}
+                        <span class="external-arrow" aria-hidden="true">↗</span>
+                      </a>
+                    ) : (
+                      item.title
+                    )}
+                  </h2>
+                  {item.url && (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="case-study-link-pill"
+                    >
+                      {item.linkText || item.url.replace(/^https?:\/\//, '')}
+                    </a>
+                  )}
+                </div>
+
+                {item.focus && <p class="case-study-focus">{item.focus}</p>}
+
+                {item.techStack && item.techStack.length > 0 && (
+                  <div class="badge-row">
+                    {item.techStack.map((tech) => (
+                      <span class="badge">{tech}</span>
+                    ))}
+                  </div>
+                )}
+              </header>
+
+              <div class="case-study-content">
+                {item.overview && (
+                  <div class="case-study-block">
+                    <h3 class="case-study-subheading">Overview</h3>
+                    <p class="case-study-text">{item.overview}</p>
+                  </div>
+                )}
+
+                {item.challenge && (
+                  <div class="case-study-block">
+                    <h3 class="case-study-subheading">The Communication Challenge</h3>
+                    <p class="case-study-text">{item.challenge}</p>
+                  </div>
+                )}
+
+                {item.features && item.features.length > 0 && (
+                  <div class="case-study-block">
+                    <h3 class="case-study-subheading">
+                      {item.featuresTitle || 'Key Architectural Features'}
+                    </h3>
+                    <ul class="case-study-feature-list">
+                      {item.features.map((feature) => (
+                        <li>
+                          <strong>{feature.title}:</strong> {feature.description}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {ProjectsContent && projectsEntry?.body && projectsEntry.body.trim().length > 0 && (
+    <section class="section">
+      <div class="container prose">
+        <ProjectsContent />
+      </div>
+    </section>
+  )}
+</Layout>
+
+<style>
+  .page-title {
+    margin-bottom: 1.25rem;
+  }
+
+  .projects-lead {
+    max-width: 72ch;
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .case-study-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .case-study-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .case-study-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+    box-shadow: var(--shadow-md);
+  }
+
+  .case-study-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .case-study-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .case-study-title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .case-study-title a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .case-study-title a:hover {
+    color: var(--accent);
+  }
+
+  .external-arrow {
+    font-size: 1.1rem;
+    color: var(--accent);
+    transition: transform 0.15s ease;
+  }
+
+  .case-study-title a:hover .external-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  .case-study-link-pill {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    padding: 0.28rem 0.75rem;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .case-study-link-pill:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .case-study-focus {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0.35rem 0 0.85rem;
+  }
+
+  .case-study-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .case-study-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .case-study-subheading {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  .case-study-text {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 0.98rem;
+  }
+
+  .case-study-feature-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    line-height: 1.6;
+    font-size: 0.98rem;
+    color: var(--text);
+  }
+
+  .case-study-feature-list li strong {
+    color: var(--text);
+  }
+
+  @media (max-width: 640px) {
+    .case-study-card {
+      padding: 1.35rem 1.25rem;
+    }
+
+    .case-study-title {
+      font-size: 1.35rem;
+    }
+
+    .case-study-title-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>
