@@ -26,7 +26,7 @@ navLinks:
     label: Professional
     show: true
     children:
-      - label: Work
+      - label: Resume
         url: /work
         show: true
       - label: Projects
