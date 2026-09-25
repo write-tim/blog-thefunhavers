@@ -21,7 +21,7 @@ buttons:
     icon: email
     show: true
   - label: Portfolio
-    url: https://timothyjohnsonwrites.com
+    url: https://portfolio.timothyjohnsonwrites.com
     icon: arrow-right
     show: true
   - label: RSS
