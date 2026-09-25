@@ -5,8 +5,8 @@ lastName: Johnson
 typingRoles:
   - husband
   - dad
+  - national park enthusiast
   - occasional photographer
-  - outdoor enthusiast
   - writer
 bio: Adventure is out there.
 avatar: /assets/tim.jpeg
