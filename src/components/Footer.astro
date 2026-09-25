@@ -1,9 +1,14 @@
 ---
 import { site, withBase } from '../data/site';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const headerFooterEntry = await getEntry('pages', 'header-footer');
 const hfData = headerFooterEntry?.data;
+
+let customPages: any[] = [];
+try {
+  customPages = await getCollection('customPages');
+} catch (e) {}
 
 const showFooterNav = hfData?.showFooterNav ?? true;
 const showFooterSocials = hfData?.showFooterSocials ?? true;
@@ -38,6 +43,20 @@ const rawFooterNav =
     : hfData?.navLinks && Array.isArray(hfData.navLinks) && hfData.navLinks.length > 0
       ? flattenNav(hfData.navLinks)
       : defaultNavLinks;
+
+// Include custom pages that have showInFooter enabled
+const footerPages = customPages.filter((p) => p.data.showInFooter);
+for (const page of footerPages) {
+  const slug = (page.data.slug || page.id).replace(/\.(md|mdx)$/, '').replace(/^\/+|\/+$/g, '');
+  const pageUrl = `/${slug}`;
+  const label = page.data.navLabel || page.data.title;
+  const alreadyExists = rawFooterNav.some(
+    (l) => l.href.replace(/\/+$/, '') === pageUrl.replace(/\/+$/, '')
+  );
+  if (!alreadyExists) {
+    rawFooterNav.push({ href: pageUrl, label, show: true });
+  }
+}
 
 const footerNav = rawFooterNav
   .filter((l) => l.show !== false && l.label && l.label.trim().length > 0)

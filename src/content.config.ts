@@ -162,6 +162,7 @@ const pages = defineCollection({
       navLinks: z
         .array(
           z.object({
+            type: z.string().optional(),
             label: z.string(),
             url: z.string().optional(),
             show: z.boolean().default(true),
@@ -210,5 +211,21 @@ const pages = defineCollection({
     }),
 });
 
-export const collections = { blog, trips, pages };
+const customPages = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/custom-pages' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string().optional(),
+    eyebrow: z.string().optional(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    navPlacement: z.enum(['none', 'personal', 'professional', 'top']).default('none'),
+    navLabel: z.string().optional(),
+    navOrder: z.number().default(100),
+    showInFooter: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog, trips, pages, customPages };
+
 

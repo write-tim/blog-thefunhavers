@@ -318,23 +318,33 @@ collections:
           - { label: "Brand Prefix", name: "brandPrefix", widget: "string", default: ">", required: false, hint: "Symbol before brand name (e.g. >)" }
           - { label: "Brand Suffix / Cursor", name: "brandSuffix", widget: "string", default: "_", required: false, hint: "Symbol after brand name (e.g. _)" }
           - { label: "Show Dark/Light Theme Toggle?", name: "showThemeToggle", widget: "boolean", default: true }
-          - label: "Header Navigation Links"
+          - label: "Header Navigation Items"
             name: "navLinks"
             widget: "list"
-            hint: "Top navigation items. Can be direct links (Home) or dropdown folders with sub-links (Personal, Professional)."
-            fields:
-              - { label: "Link Label", name: "label", widget: "string", hint: "e.g. Home, Personal, Professional" }
-              - { label: "Link URL", name: "url", widget: "string", required: false, hint: "e.g. /, /work. Leave blank if this is a dropdown parent group." }
-              - { label: "Visible in Header?", name: "show", widget: "boolean", default: true }
-              - label: "Dropdown Sub-Links"
-                name: "children"
-                widget: "list"
-                required: false
-                hint: "Add sub-links under this dropdown menu."
+            typeKey: "type"
+            hint: "Top navigation items. Add direct links (Home) or dropdown menu buckets (Personal, Professional) with nested sub-links."
+            types:
+              - label: "Direct Link (e.g. Home)"
+                name: "link"
+                widget: "object"
                 fields:
-                  - { label: "Sub-link Label", name: "label", widget: "string", hint: "e.g. Blog, Travel, Work, Projects" }
-                  - { label: "Sub-link URL", name: "url", widget: "string", hint: "e.g. /blog, /travel" }
-                  - { label: "Visible?", name: "show", widget: "boolean", default: true }
+                  - { label: "Link Label", name: "label", widget: "string", hint: "e.g. Home, Contact" }
+                  - { label: "Link URL", name: "url", widget: "string", hint: "e.g. /, /about, or https://..." }
+                  - { label: "Visible in Header?", name: "show", widget: "boolean", default: true }
+              - label: "Dropdown Menu Bucket (e.g. Personal, Professional)"
+                name: "dropdown"
+                widget: "object"
+                fields:
+                  - { label: "Bucket / Menu Title", name: "label", widget: "string", hint: "e.g. Personal, Professional, Resources" }
+                  - { label: "Visible in Header?", name: "show", widget: "boolean", default: true }
+                  - label: "Sub-Links in this Bucket"
+                    name: "children"
+                    widget: "list"
+                    hint: "Add, edit, remove, or reorder the links inside this bucket."
+                    fields:
+                      - { label: "Sub-Link Label", name: "label", widget: "string", hint: "e.g. Blog, Travel, Work, Projects" }
+                      - { label: "Sub-Link URL", name: "url", widget: "string", hint: "e.g. /blog, /travel, /work, /projects" }
+                      - { label: "Visible?", name: "show", widget: "boolean", default: true }
 
           # Footer settings
           - { label: "Show Footer Navigation Links?", name: "showFooterNav", widget: "boolean", default: true }
@@ -366,5 +376,78 @@ collections:
               default: "© {year} Timothy M. Johnson · United States",
               hint: "Use {year} to automatically output the current calendar year.",
             }
+
+  - name: "custom_pages"
+    label: "Custom Pages"
+    label_singular: "Custom Page"
+    folder: "src/content/custom-pages"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{title}} (/{{slug}})"
+    fields:
+      - { label: "Page Title", name: "title", widget: "string" }
+      - {
+          label: "URL Slug / Path",
+          name: "slug",
+          widget: "string",
+          hint: "The URL path for this page (e.g. 'about', 'contact', 'colophon', or nested like 'personal/reading-list'). Do NOT include leading or trailing slashes.",
+        }
+      - {
+          label: "Eyebrow / Subheading",
+          name: "eyebrow",
+          widget: "string",
+          required: false,
+          hint: "Optional small category or accent text displayed above the title.",
+        }
+      - {
+          label: "Meta Description",
+          name: "description",
+          widget: "text",
+          required: false,
+          hint: "Optional summary for SEO and social sharing cards.",
+        }
+      - {
+          label: "Hero / Featured Image",
+          name: "image",
+          widget: "image",
+          required: false,
+          hint: "Optional header image for this page.",
+        }
+      - label: "Navigation Placement"
+        name: "navPlacement"
+        widget: "select"
+        default: "none"
+        options:
+          - { label: "Do not add automatically (Manage manually in Header & Footer)", value: "none" }
+          - { label: "Personal (Nest under Personal dropdown)", value: "personal" }
+          - { label: "Professional (Nest under Professional dropdown)", value: "professional" }
+          - { label: "Top Level (Add to main header bar)", value: "top" }
+        hint: "Where to automatically nest this page in the site menu.",
+      - {
+          label: "Navigation Label (Optional)",
+          name: "navLabel",
+          widget: "string",
+          required: false,
+          hint: "Optional shorter label for navigation (defaults to Page Title).",
+        }
+      - {
+          label: "Navigation Order / Weight",
+          name: "navOrder",
+          widget: "number",
+          default: 100,
+          value_type: "int",
+          required: false,
+          hint: "Order when automatically placed in navigation (smaller numbers appear first).",
+        }
+      - {
+          label: "Show in Footer Links?",
+          name: "showInFooter",
+          widget: "boolean",
+          default: false,
+          hint: "Automatically append this page to the footer navigation links.",
+        }
+      - { label: "Page Content", name: "body", widget: "markdown" }
+
 
 

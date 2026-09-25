@@ -11,10 +11,12 @@ brandPrefix: '>'
 brandSuffix: _
 showThemeToggle: true
 navLinks:
-  - label: Home
+  - type: link
+    label: Home
     url: /
     show: true
-  - label: Personal
+  - type: dropdown
+    label: Personal
     show: true
     children:
       - label: Blog
@@ -23,7 +25,8 @@ navLinks:
       - label: Travel
         url: /travel
         show: true
-  - label: Professional
+  - type: dropdown
+    label: Professional
     show: true
     children:
       - label: Work

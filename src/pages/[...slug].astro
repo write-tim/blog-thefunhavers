@@ -1,0 +1,60 @@
+---
+import Layout from '../components/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('customPages');
+  const reservedSlugs = new Set([
+    '',
+    'work',
+    'projects',
+    'blog',
+    'travel',
+    '404',
+    'rss.xml',
+    'robots.txt',
+    'admin',
+  ]);
+
+  return entries
+    .map((entry) => {
+      const rawSlug = entry.data.slug || entry.id.replace(/\.(md|mdx)$/, '');
+      const cleanSlug = rawSlug.replace(/^\/+|\/+$/g, '');
+
+      if (reservedSlugs.has(cleanSlug)) {
+        return null;
+      }
+
+      return {
+        params: { slug: cleanSlug },
+        props: { entry },
+      };
+    })
+    .filter(Boolean);
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const pageTitle = entry.data.title;
+const eyebrow = entry.data.eyebrow;
+const description = entry.data.description;
+const image = entry.data.image;
+---
+
+<Layout title={pageTitle} description={description} image={image}>
+  <article class="section">
+    <div class="container">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class="page-title">{pageTitle}</h1>
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .page-title {
+    margin-bottom: 2rem;
+  }
+</style>

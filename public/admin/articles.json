@@ -14,11 +14,25 @@
     "file": "pages/home.md"
   },
   {
+    "title": "Work",
+    "route": "/work/",
+    "desc": "Professional background, roles, and experience.",
+    "category": "Pages",
+    "file": "pages/work.md"
+  },
+  {
+    "title": "Projects",
+    "route": "/projects/",
+    "desc": "Case studies, architecture, and documentation deliverables.",
+    "category": "Pages",
+    "file": "pages/projects.md"
+  },
+  {
     "title": "About",
     "route": "/about/",
     "desc": "A bit about me and this blog.",
     "category": "Pages",
-    "file": "pages/about.md"
+    "file": "custom-pages/about.md"
   },
   {
     "title": "Archives",

@@ -1,10 +1,17 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 import { site, withBase } from '../data/site';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const headerFooterEntry = await getEntry('pages', 'header-footer');
 const hfData = headerFooterEntry?.data;
+
+let customPages: any[] = [];
+try {
+  customPages = await getCollection('customPages');
+} catch (e) {
+  // Collection might be empty
+}
 
 const brandName = hfData?.brandName ?? site.shortTitle;
 const brandPrefix = hfData?.brandPrefix ?? '>';
@@ -18,6 +25,7 @@ interface SubNavLink {
 }
 
 interface NavItem {
+  type?: string;
   label: string;
   url?: string;
   show?: boolean;
@@ -25,8 +33,9 @@ interface NavItem {
 }
 
 const defaultNavItems: NavItem[] = [
-  { label: 'Home', url: '/', show: true },
+  { type: 'link', label: 'Home', url: '/', show: true },
   {
+    type: 'dropdown',
     label: 'Personal',
     show: true,
     children: [
@@ -35,6 +44,7 @@ const defaultNavItems: NavItem[] = [
     ],
   },
   {
+    type: 'dropdown',
     label: 'Professional',
     show: true,
     children: [
@@ -46,8 +56,49 @@ const defaultNavItems: NavItem[] = [
 
 const rawNavItems: NavItem[] =
   hfData?.navLinks && Array.isArray(hfData.navLinks) && hfData.navLinks.length > 0
-    ? (hfData.navLinks as NavItem[])
-    : defaultNavItems;
+    ? (structuredClone(hfData.navLinks) as NavItem[])
+    : structuredClone(defaultNavItems);
+
+// Automatically integrate custom pages based on navPlacement
+const placedPages = customPages
+  .filter((p) => p.data.navPlacement && p.data.navPlacement !== 'none')
+  .sort((a, b) => (a.data.navOrder ?? 100) - (b.data.navOrder ?? 100));
+
+for (const page of placedPages) {
+  const slug = (page.data.slug || page.id).replace(/\.(md|mdx)$/, '').replace(/^\/+|\/+$/g, '');
+  const pageUrl = `/${slug}`;
+  const label = page.data.navLabel || page.data.title;
+  const placement = page.data.navPlacement;
+
+  if (placement === 'personal' || placement === 'professional') {
+    let targetGroup = rawNavItems.find(
+      (item) => item.label.toLowerCase() === placement.toLowerCase()
+    );
+    if (!targetGroup) {
+      targetGroup = {
+        type: 'dropdown',
+        label: placement.charAt(0).toUpperCase() + placement.slice(1),
+        show: true,
+        children: [],
+      };
+      rawNavItems.push(targetGroup);
+    }
+    targetGroup.children = targetGroup.children || [];
+    const alreadyExists = targetGroup.children.some(
+      (child) => child.url.replace(/\/+$/, '') === pageUrl.replace(/\/+$/, '')
+    );
+    if (!alreadyExists) {
+      targetGroup.children.push({ label, url: pageUrl, show: true });
+    }
+  } else if (placement === 'top') {
+    const alreadyExists = rawNavItems.some(
+      (item) => item.url && item.url.replace(/\/+$/, '') === pageUrl.replace(/\/+$/, '')
+    );
+    if (!alreadyExists) {
+      rawNavItems.push({ type: 'link', label, url: pageUrl, show: true });
+    }
+  }
+}
 
 const formatHref = (url?: string) => {
   if (!url) return '';
