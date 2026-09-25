@@ -1,6 +1,6 @@
 ---
 title: Work
-name: Timothy M. Johnson
+name: Resume
 currentRole: Technical Writer
 currentCompany: PayIt
 location: Remote
