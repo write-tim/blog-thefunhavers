@@ -1,53 +1,48 @@
 ---
-# Global Header
-brandName: "thefunhavers"
-brandPrefix: ">"
-brandSuffix: "_"
+brandName: Timothy M. Johnson
+brandPrefix: '>'
+brandSuffix: _
 showThemeToggle: true
 navLinks:
-  - label: "Home"
-    url: "/"
+  - label: Home
+    url: /
     show: true
-  - label: "Work"
-    url: "/work"
+  - label: Resume
+    url: /work
     show: true
-  - label: "Blog"
-    url: "/blog"
+  - label: Blog
+    url: /blog
     show: true
-  - label: "Travel"
-    url: "/travel"
+  - label: Travel
+    url: /travel
     show: true
-
-# Global Footer
 showFooterNav: true
 footerNavLinks:
-  - label: "Home"
-    url: "/"
+  - label: Home
+    url: /
     show: true
-  - label: "Work"
-    url: "/work"
+  - label: Resume
+    url: /work
     show: true
-  - label: "Blog"
-    url: "/blog"
+  - label: Blog
+    url: /blog
     show: true
-  - label: "Travel"
-    url: "/travel"
+  - label: Travel
+    url: /travel
     show: true
-
 showFooterSocials: true
 footerSocialLinks:
-  - label: "GitHub"
-    url: "https://github.com/write-tim/blog-thefunhavers"
+  - label: GitHub
+    url: https://github.com/write-tim/blog-thefunhavers
+    show: false
+  - label: Email
+    url: mailto:tim@timothyjohnsonwrites.com
     show: true
-  - label: "Email"
-    url: "mailto:tim@timothyjohnsonwrites.com"
+  - label: Portfolio
+    url: https://timothyjohnsonwrites.com
     show: true
-  - label: "Portfolio"
-    url: "https://timothyjohnsonwrites.com"
-    show: true
-  - label: "RSS"
-    url: "/rss.xml"
-    show: true
-
-copyrightText: "© {year} Timothy M. Johnson · United States"
+  - label: RSS
+    url: /rss.xml
+    show: false
+copyrightText: © {year} Timothy M. Johnson · United States
 ---
