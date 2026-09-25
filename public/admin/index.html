@@ -574,7 +574,7 @@
             const dbs = await window.indexedDB.databases();
             for (let i = 0; i < dbs.length; i++) {
               const dbName = dbs[i].name;
-              if (dbName && (dbName.includes('blog-thefunhavers') || dbName.includes('timothyjohnsonwrites') || dbName.startsWith('github:'))) {
+              if (dbName && (dbName.includes('blog-thefunhavers') || dbName.startsWith('github:'))) {
                 const req = window.indexedDB.open(dbName);
                 req.onsuccess = function (ev) {
                   const db = ev.target.result;
