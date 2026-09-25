@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 ---
 
-<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">
+<button class="theme-toggle" type="button" aria-label="Toggle theme">
   <span class="icon-sun"><Icon name="sun" size={18} /></span>
   <span class="icon-moon"><Icon name="moon" size={18} /></span>
 </button>
@@ -17,11 +17,23 @@ import Icon from './Icon.astro';
 </style>
 
 <script>
-  const btn = document.getElementById('theme-toggle') as HTMLButtonElement;
+  function setupThemeToggles() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
 
-  btn.addEventListener('click', () => {
-    const dark = document.documentElement.dataset.theme === 'dark';
-    document.documentElement.dataset.theme = dark ? 'light' : 'dark';
-    localStorage.setItem('theme', dark ? 'light' : 'dark');
-  });
+    buttons.forEach((btn) => {
+      // Remove any existing listener by replacing or checking flag
+      if (btn.dataset.themeBound) return;
+      btn.dataset.themeBound = 'true';
+
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.dataset.theme === 'dark';
+        const nextTheme = isDark ? 'light' : 'dark';
+        document.documentElement.dataset.theme = nextTheme;
+        localStorage.setItem('theme', nextTheme);
+      });
+    });
+  }
+
+  setupThemeToggles();
+  document.addEventListener('astro:page-load', setupThemeToggles);
 </script>

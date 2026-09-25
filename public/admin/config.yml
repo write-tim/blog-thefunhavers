@@ -220,6 +220,63 @@ collections:
               required: false,
               hint: "Introductory paragraph or work philosophy displayed on the work page.",
             }
+      - name: "projects"
+        label: "Projects Page"
+        file: "src/content/pages/projects.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Projects" }
+          - { label: "Eyebrow / Subheading", name: "eyebrow", widget: "string", default: "Case Studies & Architecture", required: false }
+          - {
+              label: "Introductory Overview",
+              name: "intro",
+              widget: "text",
+              required: false,
+              hint: "Introductory overview paragraphs explaining your approach to independent architecture, docs, and engineering.",
+            }
+          - label: "Projects & Case Studies"
+            name: "projects"
+            widget: "list"
+            fields:
+              - { label: "Project Title", name: "title", widget: "string" }
+              - { label: "Live Project / Docs URL", name: "url", widget: "string", required: false, hint: "e.g. https://docs.timothyjohnsonwrites.com" }
+              - { label: "Link Display Text", name: "linkText", widget: "string", required: false, hint: "e.g. docs.timothyjohnsonwrites.com (optional)" }
+              - { label: "Focus / Subtitle", name: "focus", widget: "string", required: false, hint: "e.g. Administrative User Assistance, Integration Setup Guides & UI Microcopy" }
+              - { label: "Overview", name: "overview", widget: "text", required: false }
+              - {
+                  label: "Tech Stack Badges",
+                  name: "techStack",
+                  widget: "list",
+                  required: false,
+                  field: { label: "Tech", name: "tech", widget: "string" },
+                }
+              - {
+                  label: "The Communication Challenge",
+                  name: "challenge",
+                  widget: "text",
+                  required: false,
+                  hint: "Explanation of user friction, OAuth setup, or developer onboarding problems solved.",
+                }
+              - {
+                  label: "Deliverables / Features Section Title",
+                  name: "featuresTitle",
+                  widget: "string",
+                  default: "Key Architectural Features",
+                  required: false,
+                }
+              - label: "Key Features & Deliverables"
+                name: "features"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Feature / Deliverable Title", name: "title", widget: "string", hint: "e.g. Decoupled Content Strategy" }
+                  - { label: "Description", name: "description", widget: "text" }
+          - {
+              label: "Additional Content (Optional Markdown)",
+              name: "body",
+              widget: "markdown",
+              required: false,
+              hint: "Any additional notes, case studies, or markdown content to display at the bottom of the page.",
+            }
       - name: "header_footer"
         label: "Site Identity, Header & Footer"
         file: "src/content/pages/header-footer.md"
