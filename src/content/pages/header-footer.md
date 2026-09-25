@@ -7,7 +7,7 @@ navLinks:
   - label: Home
     url: /
     show: true
-  - label: Resume
+  - label: Work
     url: /work
     show: true
   - label: Blog
