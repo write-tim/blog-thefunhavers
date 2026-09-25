@@ -1,166 +1,144 @@
-# AstroPaper 📄
+# Astro Wanderer
 
-![AstroPaper](public/default-og.jpg)
-[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/community/file/1356898632249991861)
-![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![GitHub](https://img.shields.io/github/license/satnaing/astro-paper?color=%232F3741&style=for-the-badge)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
+A personal site theme for [Astro](https://astro.build) — portfolio, blog, and travel photo galleries in one quiet, fast template.
 
-AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro blog theme. This theme is designed and crafted based on [my personal blog](https://satnaing.dev/blog).
+**[Live demo](https://igagansingh.com/astro-wanderer)**
 
-Read [the blog posts](https://astro-paper.pages.dev/posts/) or check [the README Documentation Section](#-documentation) for more info.
+![Astro Wanderer homepage](screenshot.png)
 
-## 🔥 Features
+## Why Wanderer
 
-- [x] type-safe markdown
-- [x] super fast performance
-- [x] accessible (Keyboard/VoiceOver)
-- [x] responsive (mobile ~ desktops)
-- [x] SEO-friendly
-- [x] light & dark mode
-- [x] static search ([Pagefind](https://pagefind.app/))
-- [x] draft posts & pagination
-- [x] sitemap & rss feed
-- [x] MDX support
-- [x] collapsible table of contents
-- [x] followed best practices
-- [x] highly customizable
-- [x] dynamic OG image generation for blog posts ([Blog Post](https://astro-paper.pages.dev/posts/dynamic-og-image-generation-in-astropaper-blog-posts/))
-- [x] i18n ready
+Most developer portfolios stop at the work page. Wanderer is built around the idea that a good personal site shows what you're like *when you're not working* — so it ships with a travel section where every trip is a story with a photo carousel and lightbox, right next to your résumé and blog.
 
-_Note: I've tested screen-reader accessibility of AstroPaper using **VoiceOver** on Mac and **TalkBack** on Android. I couldn't test all other screen-readers out there. However, accessibility enhancements in AstroPaper should be working fine on others as well._
+## Features
 
-## ✅ Lighthouse Score
+- **Home** — hero with a typing animation, avatar, and social links
+- **Work** — expandable experience timeline, education, and skill groups, all from one data file
+- **Blog** — markdown posts with tags, tag pages, prev/next navigation, reading time, and drafts
+- **Travel** — trip entries with hero images, highlight badges, photo carousel, lightbox with keyboard navigation, and optional video support
+- **Zero JS by default** — only three tiny scripts (theme toggle, typing effect, gallery); no framework runtime
+- **Dark/light mode** — respects `prefers-color-scheme`, remembers your choice, no flash on load
+- **SEO ready** — canonical URLs, Open Graph/Twitter cards, JSON-LD structured data, sitemap, RSS feed
+- **Accessible** — semantic HTML, skip-free keyboard navigation in galleries, `aria` labels throughout
+- **One config file** — name, socials, bio, and résumé all live in plain TypeScript data files
+- **100/100 Lighthouse** out of the box on a static build
 
-<p align="center">
-  <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fastro-paper.pages.dev%2F&form_factor=desktop">
-    <img width="710" alt="AstroPaper Lighthouse Score" src="AstroPaper-lighthouse-score.svg">
-  </a>
-</p>
+## Quick start
 
-## 🚀 Project Structure
+Use this template with the Astro CLI:
 
-Inside of AstroPaper, you'll see the following folders and files:
-
-```bash
-/
-├── public/
-│   ├── pagefind/          # auto-generated on build
-│   ├── favicon.svg
-│   └── default-og.jpg
-├── src/
-│   ├── assets/
-│   │   ├── icons/
-│   │   └── images/
-│   ├── components/
-│   ├── content/
-│   │   ├── pages/
-│   │   │   └── about.md
-│   │   └── posts/
-│   │       └── some-blog-posts.md
-│   ├── i18n/
-│   ├── layouts/
-│   ├── pages/
-│   ├── scripts/
-│   ├── styles/
-│   ├── types/
-│   ├── utils/
-│   ├── config.ts
-│   └── content.config.ts
-├── astro-paper.config.ts  # user-defined configurations
-└── astro.config.ts
+```sh
+npm create astro@latest -- --template igagansingh/astro-wanderer
 ```
 
-All blog posts are stored in the `src/content/posts/` directory. You can organise posts into subdirectories — the subdirectory name becomes part of the post URL.
+Or clone it directly:
 
-## 📖 Documentation
-
-Documentation can be read in two formats\_ _markdown_ & _blog post_.
-
-- Configuration - [markdown](src/content/posts/how-to-configure-astropaper-theme.md) | [blog post](https://astro-paper.pages.dev/posts/how-to-configure-astropaper-theme/)
-- Add Posts - [markdown](src/content/posts/adding-new-post.md) | [blog post](https://astro-paper.pages.dev/posts/adding-new-posts-in-astropaper-theme/)
-- Customize Color Schemes - [markdown](src/content/posts/customizing-astropaper-theme-color-schemes.md) | [blog post](https://astro-paper.pages.dev/posts/customizing-astropaper-theme-color-schemes/)
-- Predefined Color Schemes - [markdown](src/content/posts/predefined-color-schemes.md) | [blog post](https://astro-paper.pages.dev/posts/predefined-color-schemes/)
-
-## 💻 Tech Stack
-
-**Main Framework** - [Astro](https://astro.build/)  
-**Type Checking** - [TypeScript](https://www.typescriptlang.org/)  
-**Styling** - [TailwindCSS](https://tailwindcss.com/)  
-**UI/UX** - [Figma Design File](https://www.figma.com/community/file/1356898632249991861)  
-**Static Search** - [Pagefind](https://pagefind.app/)  
-**Icons** - [Tablers](https://tabler-icons.io/)  
-**Code Formatting** - [Prettier](https://prettier.io/)  
-**Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)  
-**Linting** - [ESLint](https://eslint.org)  
-**Dynamic OG images** - [Satori](https://github.com/vercel/satori) + [Sharp](https://sharp.pixelplumbing.com/) + [Astro Fonts](https://docs.astro.build/en/guides/fonts/)
-
-## 👨🏻‍💻 Running Locally
-
-You can start using this project locally by running the following command in your desired directory:
-
-```bash
-# pnpm
-pnpm create astro@latest --template satnaing/astro-paper
-
-# npm
-npm create astro@latest -- --template satnaing/astro-paper
-
-# yarn
-yarn create astro --template satnaing/astro-paper
-
-# bun
-bun create astro@latest -- --template satnaing/astro-paper
-```
-
-Then start the project by running the following commands:
-
-```bash
-# install dependencies if you haven't done so in the previous step.
+```sh
+git clone https://github.com/igagansingh/astro-wanderer.git
+cd astro-wanderer
 npm install
-
-# start running the project
 npm run dev
 ```
 
-## Google Site Verification (optional)
+Then open `src/data/site.ts` — it's the single source of truth for your name, tagline, social links, and production URL. The sample post in `src/content/blog/getting-started.md` walks through everything else.
 
-You can add your [Google Site Verification HTML tag](https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag) by setting `site.googleVerification` in `astro-paper.config.ts`:
+## Project structure
 
-```ts file="astro-paper.config.ts"
-export default defineAstroPaperConfig({
-  site: {
-    // ...
-    googleVerification: "your-google-site-verification-value",
-  },
-  // ...
-});
+```
+├── public/
+│   └── img/              # avatar, og image, trip photos
+├── src/
+│   ├── components/       # Header, Hero, Gallery, PostCard, …
+│   ├── content/
+│   │   ├── blog/         # markdown posts
+│   │   └── trips/        # markdown trip stories
+│   ├── data/
+│   │   ├── site.ts       # ← edit this first
+│   │   └── resume.ts     # experience, education, skills, typing roles
+│   ├── pages/            # index, work, blog, travel, 404, rss
+│   └── styles/global.css # design tokens + all styling (no framework)
+└── astro.config.mjs      # set your production URL here
 ```
 
-> See [this discussion](https://github.com/satnaing/astro-paper/discussions/334#discussioncomment-10139247) for adding AstroPaper to the Google Search Console.
+## Writing content
 
-## 🧞 Commands
+### Blog post
 
-All commands are run from the root of the project, from a terminal:
+Create a markdown file in `src/content/blog/`:
 
-| Command          | Action                                                                                                                           |
-| :--------------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm install`   | Installs dependencies                                                                                                            |
-| `pnpm dev`       | Starts local dev server at `localhost:4321`                                                                                      |
-| `pnpm build`     | Type-checks, builds the site, runs Pagefind indexing, and copies the index to `public/pagefind/`                                 |
-| `pnpm preview`   | Preview your build locally, before deploying                                                                                     |
-| `pnpm sync`      | Generates TypeScript types for all Astro modules. [Learn more](https://docs.astro.build/en/reference/cli-reference/#astro-sync). |
-| `pnpm astro ...` | Run CLI commands like `astro add`, `astro check`                                                                                 |
-
-## ✨ Feedback & Suggestions
-
-If you have any suggestions/feedback, you can contact me via [my email](mailto:satnaingdev+astropaper@gmail.com). Alternatively, feel free to open an issue if you find bugs or want to request new features.
-
-## 📜 License
-
-Licensed under the MIT License, Copyright © 2026
-
+```md
+---
+title: My first post
+subtitle: An optional subtitle
+date: 2026-01-15
+tags: [notes]
+category: tech        # or life
+description: One-liner for cards and SEO.
+draft: false          # true hides the post from builds
 ---
 
-Made with 🤍 by [Sat Naing](https://satnaing.dev) 👨🏻‍💻 and [contributors](https://github.com/satnaing/astro-paper/graphs/contributors).
+Your words here.
+```
+
+### Trip entry
+
+Create a markdown file in `src/content/trips/`, drop photos into `public/img/trips/<trip>/`, and list them:
+
+```md
+---
+title: Kyoto, 2026
+place: Kyoto, Japan
+date: 2026-04-10
+summary: One line for the card.
+heroImage: /img/trips/kyoto/hero.jpg
+circlePhotos:                 # photos for the rotating ring
+  - /img/trips/kyoto/torii.jpg
+gallery:
+  - /img/trips/kyoto/hero.jpg
+highlights:
+  - Fushimi Inari at sunrise
+---
+
+Story body here.
+```
+
+Photos in `gallery` get a carousel with a click-to-open lightbox, thumbnail strip, fullscreen mode, and arrow-key navigation. `.mp4`/`.webm` files are supported alongside images.
+
+## Customization checklist
+
+1. `src/data/site.ts` — name, description, URL, socials
+2. `src/data/resume.ts` — roles, education, skills, hero typing words
+3. `public/img/avatar.svg` → your photo · `public/img/og.jpg` → a 1200×630 share card
+4. `astro.config.mjs` — set `site` to your production URL, and set (or remove) `base`
+5. Write real content, then delete the two sample posts and sample trip
+
+## Deploy
+
+The included `.github/workflows/deploy.yml` builds and deploys to GitHub Pages on every push to `main`. In your repo settings, set **Settings → Pages → Source** to **GitHub Actions**.
+
+### Hosting at a subpath (e.g. `username.github.io/my-repo`)
+
+Keep `base: '/my-repo'` in `astro.config.mjs`. All internal links and assets are routed through a single `withBase()` helper, so everything just works. The deploy workflow automatically nests the build output under your base path so GitHub Pages resolves it. This is how the [live demo](https://igagansingh.com/astro-wanderer) is hosted.
+
+### Hosting at the domain root (`example.com`)
+
+Remove the `base` line from `astro.config.mjs`. The workflow detects this and ships the output un-nested.
+
+Any static host works too — Netlify, Vercel, Cloudflare Pages — just point the build command at `npm run build` with output `dist/`.
+
+## Commands
+
+| Command           | Action                                    |
+| :---------------- | :---------------------------------------- |
+| `npm run dev`     | Start local dev server                    |
+| `npm run build`   | Production build to `./dist/`             |
+| `npm run preview` | Preview the production build locally      |
+| `npm run check`   | Type-check the project                    |
+
+## Credits
+
+Built by [Gagan Singh](https://igagansingh.com) with [opencode](https://opencode.ai) — every part of this template, from the design tokens to the photo lightbox, was written pair-programming style with an AI coding agent.
+
+## License
+
+MIT — free for personal and commercial use. If it saved you an afternoon, a star or a link back is always appreciated.

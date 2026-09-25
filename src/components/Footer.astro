@@ -1,30 +1,22 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import Socials from "./Socials.astro";
-import { useTranslations } from "@/i18n";
-
-type Props = {
-  noMarginTop?: boolean;
-} & HTMLAttributes<"footer">;
-
-const { noMarginTop = false, class: className, ...attrs } = Astro.props;
-
-const t = useTranslations(Astro.currentLocale);
-const currentYear = new Date().getFullYear();
+import { site, withBase } from '../data/site';
 ---
 
-<footer
-  class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
-  {...attrs}
->
-  <div
-    class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
-  >
-    <Socials />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>{t.footer.copyright} &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>{t.footer.allRightsReserved}</span>
-    </div>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <ul class="footer-links">
+      <li><a href={withBase('/')}>Home</a></li>
+      <li><a href={withBase('/work')}>Work</a></li>
+      <li><a href={withBase('/blog')}>Blog</a></li>
+      <li><a href={withBase('/travel')}>Travel</a></li>
+    </ul>
+    <ul class="footer-links">
+      {Object.values(site.socials).map((s) => (
+        <li>
+          <a href={withBase(s.url)} target={s.url.startsWith('http') ? '_blank' : undefined} rel="noopener">{s.label}</a>
+        </li>
+      ))}
+    </ul>
+    <p>© {new Date().getFullYear()} {site.author.name} · {site.author.location}</p>
   </div>
 </footer>

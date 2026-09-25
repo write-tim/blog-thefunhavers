@@ -1,142 +1,29 @@
 ---
-import { getCollection, getEntry, render } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import Card from "@/components/Card.astro";
-import LinkButton from "@/components/LinkButton.astro";
-import { getSortedPosts } from "@/utils/getSortedPosts";
-import { useTranslations } from "@/i18n";
-import config from "@/config";
+import Layout from '../components/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { site, withBase } from '../data/site';
+import { experience, skillGroups } from '../data/resume';
 
-const { socials, posts: postsConfig } = config;
-
-const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
-
-const posts = await getCollection("posts");
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-const homePath = getRelativeLocaleUrl(locale, "");
-
-const homeEntry = await getEntry("pages", "home");
-const { Content: HomeContent } = homeEntry
-  ? await render(homeEntry)
-  : { Content: null };
-
-const pageTitle =
-  homeEntry?.data.title && homeEntry.data.title !== config.site.title
-    ? `${homeEntry.data.title} | ${config.site.title}`
-    : config.site.title;
-const pageDescription = homeEntry?.data.description || config.site.description;
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.author.name,
+  url: site.url,
+  image: `${site.url}${withBase('/img/og.jpg')}`,
+  jobTitle: experience[0]?.role,
+  worksFor: { '@type': 'Organization', name: experience[0]?.company },
+  email: `mailto:${site.author.email}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.author.location,
+  },
+  sameAs: Object.values(site.socials)
+    .filter((s) => s.url.startsWith('http'))
+    .map((s) => s.url),
+  knowsAbout: skillGroups.flatMap((g) => g.skills).slice(0, 8),
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <Header />
-  <main
-    id="main-content"
-    data-layout="index"
-    data-home-path={homePath}
-    class="app-layout my-1"
-  >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        {homeEntry?.data.title ?? "The Funhavers"}
-      </h1>
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
-      {
-        HomeContent ? (
-          <div class="app-prose mt-4">
-            <HomeContent />
-          </div>
-        ) : (
-          <p class="mt-2">{config.site.description}</p>
-        )
-      }
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
-  </main>
-  <Footer />
+<Layout title={undefined} jsonLd={personJsonLd}>
+  <Hero />
 </Layout>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset;
-    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-    if (indexLayout?.layout) {
-      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
-    }
-  });
-</script>

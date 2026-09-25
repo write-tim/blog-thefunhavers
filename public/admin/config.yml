@@ -9,32 +9,40 @@ media_folder: "public/assets"
 public_folder: "/assets"
 
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "src/content/posts"
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
     create: true
     slug: "{{slug}}"
     format: "yaml-frontmatter"
     extension: "md"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "string", required: false }
       - {
           label: "Publish Date",
-          name: "pubDatetime",
+          name: "date",
           widget: "datetime",
           format: "YYYY-MM-DDTHH:mm:ssZ",
           date_format: "YYYY-MM-DD",
           time_format: "HH:mm",
         }
       - {
-          label: "Modified Date",
-          name: "modDatetime",
+          label: "Updated Date",
+          name: "updated",
           widget: "datetime",
           required: false,
           format: "YYYY-MM-DDTHH:mm:ssZ",
           date_format: "YYYY-MM-DD",
           time_format: "HH:mm",
+        }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "select",
+          options: ["life", "travel", "adventures", "tech"],
+          default: "life",
         }
       - {
           label: "Author",
@@ -42,13 +50,8 @@ collections:
           widget: "string",
           default: "Timothy Johnson",
         }
-      - {
-          label: "Featured",
-          name: "featured",
-          widget: "boolean",
-          default: false,
-          required: false,
-        }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: false }
       - {
           label: "Draft",
           name: "draft",
@@ -56,30 +59,29 @@ collections:
           default: false,
           required: false,
         }
-      - { label: "Tags", name: "tags", widget: "list", default: ["others"] }
-      - { label: "OG Image", name: "ogImage", widget: "image", required: false }
-      - {
-          label: "Canonical URL",
-          name: "canonicalURL",
-          widget: "string",
-          required: false,
-        }
       - { label: "Body", name: "body", widget: "markdown" }
 
-  - name: "pages"
-    label: "Pages"
-    folder: "src/content/pages"
+  - name: "trips"
+    label: "Travel Trips"
+    folder: "src/content/trips"
     create: true
     slug: "{{slug}}"
     format: "yaml-frontmatter"
     extension: "md"
     fields:
-      - { label: "Title", name: "title", widget: "string", hint: "Page title or Hero heading (for Home)" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Place", name: "place", widget: "string" }
       - {
-          label: "Description",
-          name: "description",
-          widget: "string",
-          required: false,
-          hint: "Meta description for search engines and social sharing",
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
         }
-      - { label: "Body", name: "body", widget: "markdown", hint: "Page content or Hero intro text (for Home)" }
+      - { label: "Summary", name: "summary", widget: "string" }
+      - { label: "Hero Image", name: "heroImage", widget: "image" }
+      - { label: "Highlights", name: "highlights", widget: "list" }
+      - { label: "Rotating Circle Photos", name: "circlePhotos", widget: "list", field: { label: "Photo", name: "photo", widget: "image" } }
+      - { label: "Gallery Photos", name: "gallery", widget: "list", field: { label: "Photo", name: "photo", widget: "image" } }
+      - { label: "Story (Body)", name: "body", widget: "markdown" }

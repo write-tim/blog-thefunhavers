@@ -1,36 +1,36 @@
-import { defineCollection } from "astro:content";
-import { z } from "astro/zod";
-import { glob } from "astro/loaders";
-import config from "@/config";
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
 
-export const BLOG_PATH = "src/content/posts";
-
-const posts = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: `./${BLOG_PATH}` }),
-  schema: z.object({
-      author: z.string().default(config.site.author),
-      pubDatetime: z.date(),
-      modDatetime: z.date().optional().nullable(),
-      title: z.string(),
-      featured: z.boolean().optional(),
-      draft: z.boolean().optional(),
-      tags: z.array(z.string()).default(["others"]),
-      ogImage: z.string().optional(),
-      description: z.string(),
-      canonicalURL: z.string().optional(),
-      hideEditPost: z.boolean().optional(),
-      timezone: z.string().optional(),
-    }),
-});
-
-const pages = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/pages" }),
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
+    subtitle: z.string().optional(),
     description: z.string().optional(),
-    ogImage: z.string().optional(),
-    canonicalURL: z.string().optional(),
+    date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    tags: z.array(z.string()).default([]),
+    coverImage: z.string().optional(),
+    category: z.string().default('life'),
+    author: z.string().default('Timothy Johnson'),
+    mathjax: z.boolean().default(false),
+    draft: z.boolean().default(false),
   }),
 });
 
-export const collections = { posts, pages };
+const trips = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/trips' }),
+  schema: z.object({
+    title: z.string(),
+    place: z.string(),
+    date: z.coerce.date(),
+    summary: z.string(),
+    heroImage: z.string(),
+    gallery: z.array(z.string()).default([]),
+    circlePhotos: z.array(z.string()).default([]),
+    highlights: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { blog, trips };
