@@ -4,7 +4,7 @@ name: Timothy M. Johnson
 currentRole: Technical Writer
 currentCompany: PayIt
 location: Remote
-showLocation: true
+showLocation: false
 phone: (618) 534-2098
 showPhone: false
 contactLinks:
