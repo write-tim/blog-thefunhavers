@@ -209,25 +209,17 @@ const pages = defineCollection({
           })
         )
         .optional(),
+      // Custom / generic page fields
+      slug: z.string().optional(),
+      image: z.string().optional(),
+      navPlacement: z.enum(['none', 'personal', 'professional', 'top']).default('none'),
+      navLabel: z.string().optional(),
+      navOrder: z.number().default(100),
+      showInFooter: z.boolean().default(false),
       copyrightText: z.string().optional(),
     }),
 });
 
-const customPages = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/custom-pages' }),
-  schema: z.object({
-    title: z.string(),
-    slug: z.string().optional(),
-    eyebrow: z.string().optional(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    navPlacement: z.enum(['none', 'personal', 'professional', 'top']).default('none'),
-    navLabel: z.string().optional(),
-    navOrder: z.number().default(100),
-    showInFooter: z.boolean().default(false),
-  }),
-});
-
-export const collections = { blog, trips, pages, customPages };
+export const collections = { blog, trips, pages };
 
 

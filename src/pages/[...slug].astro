@@ -3,9 +3,11 @@ import Layout from '../components/Layout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('customPages');
+  const entries = await getCollection('pages');
   const reservedSlugs = new Set([
     '',
+    'home',
+    'header-footer',
     'work',
     'projects',
     'blog',
@@ -18,7 +20,12 @@ export async function getStaticPaths() {
 
   return entries
     .map((entry) => {
-      const rawSlug = entry.data.slug || entry.id.replace(/\.(md|mdx)$/, '');
+      const fileId = entry.id.replace(/\.(md|mdx)$/, '');
+      if (reservedSlugs.has(fileId)) {
+        return null;
+      }
+
+      const rawSlug = entry.data.slug || fileId;
       const cleanSlug = rawSlug.replace(/^\/+|\/+$/g, '');
 
       if (reservedSlugs.has(cleanSlug)) {

@@ -160,6 +160,73 @@ collections:
               required: false,
               hint: "Extra content displayed below the hero card on the home page.",
             }
+      - name: "about"
+        label: "About Page"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "About" }
+          - {
+              label: "URL Slug / Path",
+              name: "slug",
+              widget: "string",
+              default: "about",
+              hint: "The URL path for this page (e.g. 'about', 'contact'). Do NOT include slashes."
+            }
+          - {
+              label: "Eyebrow / Subheading",
+              name: "eyebrow",
+              widget: "string",
+              required: false,
+              hint: "Optional small category or accent text displayed above the title."
+            }
+          - {
+              label: "Meta Description",
+              name: "description",
+              widget: "text",
+              required: false,
+              hint: "Optional summary for SEO and social sharing cards."
+            }
+          - {
+              label: "Hero / Featured Image",
+              name: "image",
+              widget: "image",
+              required: false,
+              hint: "Optional header image for this page."
+            }
+          - label: "Navigation Placement"
+            name: "navPlacement"
+            widget: "select"
+            default: "none"
+            options:
+              - { label: "Do not add automatically (Manage manually in Header & Footer)", value: "none" }
+              - { label: "Personal (Nest under Personal dropdown)", value: "personal" }
+              - { label: "Professional (Nest under Professional dropdown)", value: "professional" }
+              - { label: "Top Level (Add to main header bar)", value: "top" }
+            hint: "Where to automatically nest this page in the site menu."
+          - {
+              label: "Navigation Label (Optional)",
+              name: "navLabel",
+              widget: "string",
+              required: false,
+              hint: "Optional shorter label for navigation (defaults to Page Title)."
+            }
+          - {
+              label: "Navigation Order / Weight",
+              name: "navOrder",
+              widget: "number",
+              default: 100,
+              value_type: "int",
+              required: false,
+              hint: "Order when automatically placed in navigation (smaller numbers appear first)."
+            }
+          - {
+              label: "Show in Footer Links?",
+              name: "showInFooter",
+              widget: "boolean",
+              default: true,
+              hint: "Automatically append this page to the footer navigation links."
+            }
+          - { label: "Page Content", name: "body", widget: "markdown" }
       - name: "work"
         label: "Work Page"
         file: "src/content/pages/work.md"
@@ -384,78 +451,6 @@ collections:
               default: "© {year} Timothy M. Johnson · United States",
               hint: "Use {year} to automatically output the current calendar year.",
             }
-
-  - name: "custom_pages"
-    label: "Custom Pages"
-    label_singular: "Custom Page"
-    folder: "src/content/custom-pages"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    summary: "{{title}} (/{{slug}})"
-    fields:
-      - { label: "Page Title", name: "title", widget: "string" }
-      - {
-          label: "URL Slug / Path",
-          name: "slug",
-          widget: "string",
-          hint: "The URL path for this page (e.g. 'about', 'contact', 'colophon', or nested like 'personal/reading-list'). Do NOT include leading or trailing slashes.",
-        }
-      - {
-          label: "Eyebrow / Subheading",
-          name: "eyebrow",
-          widget: "string",
-          required: false,
-          hint: "Optional small category or accent text displayed above the title.",
-        }
-      - {
-          label: "Meta Description",
-          name: "description",
-          widget: "text",
-          required: false,
-          hint: "Optional summary for SEO and social sharing cards.",
-        }
-      - {
-          label: "Hero / Featured Image",
-          name: "image",
-          widget: "image",
-          required: false,
-          hint: "Optional header image for this page.",
-        }
-      - label: "Navigation Placement"
-        name: "navPlacement"
-        widget: "select"
-        default: "none"
-        options:
-          - { label: "Do not add automatically (Manage manually in Header & Footer)", value: "none" }
-          - { label: "Personal (Nest under Personal dropdown)", value: "personal" }
-          - { label: "Professional (Nest under Professional dropdown)", value: "professional" }
-          - { label: "Top Level (Add to main header bar)", value: "top" }
-        hint: "Where to automatically nest this page in the site menu."
-      - {
-          label: "Navigation Label (Optional)",
-          name: "navLabel",
-          widget: "string",
-          required: false,
-          hint: "Optional shorter label for navigation (defaults to Page Title).",
-        }
-      - {
-          label: "Navigation Order / Weight",
-          name: "navOrder",
-          widget: "number",
-          default: 100,
-          value_type: "int",
-          required: false,
-          hint: "Order when automatically placed in navigation (smaller numbers appear first).",
-        }
-      - {
-          label: "Show in Footer Links?",
-          name: "showInFooter",
-          widget: "boolean",
-          default: false,
-          hint: "Automatically append this page to the footer navigation links.",
-        }
-      - { label: "Page Content", name: "body", widget: "markdown" }
 
 
 
