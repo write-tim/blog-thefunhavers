@@ -2,14 +2,17 @@
 title: Big Sur, 2018
 place: Big Sur, 2018
 date: 2018-04-29
-summary: text
+summary: This blog post recounts my grueling yet exhilarating experience running the Big Sur International Marathon to celebrate his 40th birthday, detailing the breathtaking coastal views, punishing hills, and his triumphant finish with my family.
 heroImage: /assets/2018_BigSur_BixbyBridgeBig.jpg
 highlights:
-  - text
+  - Hurricane Point
+  - Taiko Drummers
+  - Strawberries at mile 23
 circlePhotos:
   - /assets/2018_BigSur_BixbyBridgeBig.jpg
 gallery:
   - /assets/2018_BigSur_BixbyBridgeBig.jpg
+draft: false
 ---
 
 I don't know when I decided that my 39th year on this planet would include a running streak. Much less that it was going to culminate in a full marathon. Not just any marathon – the Big Sur International Marathon. No, on May 15th, 2017, I put on a pair of running shoes, stepped outside, and went for a little run. An I-have-364-days-until-I'm-40 birthday run.
