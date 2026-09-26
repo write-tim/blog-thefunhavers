@@ -3,16 +3,12 @@ import ThemeToggle from './ThemeToggle.astro';
 import { site, withBase } from '../data/site';
 import { getEntry, getCollection } from 'astro:content';
 
-const headerFooterEntry = await getEntry('pages', 'header-footer');
+const headerFooterEntry = await getEntry('site', 'header-footer');
 const hfData = headerFooterEntry?.data;
 
 let customPages: any[] = [];
 try {
-  const allPages = await getCollection('pages');
-  const reservedPageIds = new Set(['home', 'header-footer', 'work', 'projects']);
-  customPages = allPages.filter(
-    (p) => !reservedPageIds.has(p.id.replace(/\.(md|mdx)$/, ''))
-  );
+  customPages = await getCollection('pages', ({ data }) => !data.draft);
 } catch (e) {
   // Collection might be empty
 }

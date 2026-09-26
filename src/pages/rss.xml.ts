@@ -4,7 +4,7 @@ import { getCollection, getEntry } from 'astro:content';
 import { site, withBase } from '../data/site';
 
 export async function GET(context: APIContext) {
-  const headerFooterEntry = await getEntry('pages', 'header-footer');
+  const headerFooterEntry = await getEntry('site', 'header-footer');
   const siteTitle = headerFooterEntry?.data?.siteTitle || site.title;
   const siteDescription = headerFooterEntry?.data?.siteDescription || site.description;
 

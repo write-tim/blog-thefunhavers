@@ -17,7 +17,7 @@ interface Props {
   jsonLd?: object;
 }
 
-const headerFooterEntry = await getEntry('pages', 'header-footer');
+const headerFooterEntry = await getEntry('site', 'header-footer');
 const hfData = headerFooterEntry?.data;
 
 const siteTitle = hfData?.siteTitle || site.title;

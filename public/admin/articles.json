@@ -10,22 +10,22 @@
     "title": "hello",
     "route": "/",
     "desc": "Pictures, or it didn't happen.",
-    "category": "Home",
-    "file": "pages/home.md"
+    "category": "Site Settings",
+    "file": "site/home.md"
   },
   {
     "title": "Work",
     "route": "/work/",
     "desc": "Professional background, roles, and experience.",
-    "category": "Pages",
-    "file": "pages/work.md"
+    "category": "Site Settings",
+    "file": "site/work.md"
   },
   {
     "title": "Projects",
     "route": "/projects/",
     "desc": "Case studies, architecture, and documentation deliverables.",
-    "category": "Pages",
-    "file": "pages/projects.md"
+    "category": "Site Settings",
+    "file": "site/projects.md"
   },
   {
     "title": "About",
