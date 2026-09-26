@@ -7,7 +7,7 @@ import type { CollectionEntry } from 'astro:content';
 import { site, withBase } from '../../data/site';
 
 export async function getStaticPaths() {
-  const trips = await getCollection('trips');
+  const trips = await getCollection('trips', ({ data }) => !data.draft && !data.hidden);
   return trips.map((trip) => ({ params: { slug: trip.id }, props: { trip } }));
 }
 

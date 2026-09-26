@@ -81,9 +81,17 @@ collections:
         }
       - { label: "Summary", name: "summary", widget: "string" }
       - { label: "Hero Image", name: "heroImage", widget: "image" }
-      - { label: "Highlights", name: "highlights", widget: "list" }
-      - { label: "Rotating Circle Photos", name: "circlePhotos", widget: "list", field: { label: "Photo", name: "photo", widget: "image" } }
-      - { label: "Gallery Photos", name: "gallery", widget: "list", field: { label: "Photo", name: "photo", widget: "image" } }
+      - { label: "Highlights", name: "highlights", widget: "list", required: false, default: [] }
+      - { label: "Rotating Circle Photos", name: "circlePhotos", widget: "list", required: false, default: [], field: { label: "Photo", name: "photo", widget: "image" } }
+      - { label: "Gallery Photos", name: "gallery", widget: "list", required: false, default: [], field: { label: "Photo", name: "photo", widget: "image" } }
+      - {
+          label: "Hide Trip (Draft)",
+          name: "draft",
+          widget: "boolean",
+          default: false,
+          required: false,
+          hint: "Toggle on to hide this travel post from the site."
+        }
       - { label: "Story (Body)", name: "body", widget: "markdown" }
 
   - name: "pages"

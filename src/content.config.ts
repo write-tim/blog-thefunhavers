@@ -30,6 +30,8 @@ const trips = defineCollection({
     gallery: z.array(z.string()).default([]),
     circlePhotos: z.array(z.string()).default([]),
     highlights: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+    hidden: z.boolean().default(false),
   }),
 });
 
