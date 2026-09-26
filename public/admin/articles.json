@@ -32,7 +32,7 @@
     "route": "/about/",
     "desc": "A bit about me and this blog.",
     "category": "Pages",
-    "file": "pages/about.md"
+    "file": "custom-pages/about.md"
   },
   {
     "title": "Archives",

@@ -7,11 +7,7 @@ const hfData = headerFooterEntry?.data;
 
 let customPages: any[] = [];
 try {
-  const allPages = await getCollection('pages');
-  const reservedPageIds = new Set(['home', 'header-footer', 'work', 'projects']);
-  customPages = allPages.filter(
-    (p) => !reservedPageIds.has(p.id.replace(/\.(md|mdx)$/, ''))
-  );
+  customPages = await getCollection('customPages');
 } catch (e) {}
 
 const showFooterNav = hfData?.showFooterNav ?? true;

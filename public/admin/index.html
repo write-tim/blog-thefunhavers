@@ -585,7 +585,7 @@
                     getAllReq.onsuccess = function () {
                       const items = getAllReq.result || [];
                       items.forEach(function (item) {
-                        if (item && item.path && (item.path.startsWith('src/content/posts/') || item.path.startsWith('src/content/pages/')) && (item.path.endsWith('.mdx') || item.path.endsWith('.md'))) {
+                        if (item && item.path && (item.path.startsWith('src/content/posts/') || item.path.startsWith('src/content/pages/') || item.path.startsWith('src/content/custom-pages/')) && (item.path.endsWith('.mdx') || item.path.endsWith('.md'))) {
                           const text = item.text || (item.data && item.data.text) || '';
                           const titleM = text.match(/^title:\s*["'`]?(.*?)["'`]?$/m);
                           const slugM = text.match(/^slug:\s*["'`]?(.*?)["'`]?$/m);
@@ -598,9 +598,12 @@
                               const base = rel.split('/').pop().replace(/\.(mdx|md)$/, '');
                               const slugPath = parts.length > 0 ? parts.join('/') + '/' + base : base;
                               route = '/posts/' + slugPath + '/';
+                            } else if (item.path.startsWith('src/content/custom-pages/')) {
+                              const customSlug = slugM ? slugM[1].trim().replace(/^\/+|\/+$/g, '') : item.path.replace(/^src\/content\/custom-pages\//, '').replace(/\.(mdx|md)$/, '');
+                              route = '/' + customSlug + '/';
                             } else if (item.path.startsWith('src/content/pages/')) {
-                              const customSlug = slugM ? slugM[1].trim().replace(/^\/+|\/+$/g, '') : item.path.replace(/^src\/content\/pages\//, '').replace(/\.(mdx|md)$/, '');
-                              route = customSlug === 'home' ? '/' : '/' + customSlug + '/';
+                              const rel = item.path.replace(/^src\/content\/pages\//, '');
+                              route = '/' + rel.replace(/\.(mdx|md)$/, '') + '/';
                             }
 
                             const exists = articlesList.some(function (a) { return a.route === route; });
