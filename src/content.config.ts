@@ -35,8 +35,8 @@ const trips = defineCollection({
   }),
 });
 
-const site = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/site' }),
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
   schema: z
     .object({
       // Home page fields
@@ -209,26 +209,17 @@ const site = defineCollection({
           })
         )
         .optional(),
+      // Custom / generic page fields
+      slug: z.string().optional(),
+      image: z.string().optional(),
+      navPlacement: z.enum(['none', 'personal', 'professional', 'top']).default('none'),
+      navLabel: z.string().optional(),
+      navOrder: z.number().default(100),
+      showInFooter: z.boolean().default(false),
       copyrightText: z.string().optional(),
     }),
 });
 
-const pages = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/pages' }),
-  schema: z.object({
-    title: z.string(),
-    slug: z.string().optional(),
-    eyebrow: z.string().optional(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    navPlacement: z.enum(['none', 'personal', 'professional', 'top']).default('none'),
-    navLabel: z.string().optional(),
-    navOrder: z.number().default(100),
-    showInFooter: z.boolean().default(false),
-    draft: z.boolean().default(false),
-  }),
-});
-
-export const collections = { blog, trips, pages, site };
+export const collections = { blog, trips, pages };
 
 

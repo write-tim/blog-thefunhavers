@@ -2,7 +2,7 @@
 import Layout from '../components/Layout.astro';
 import { getEntry, render } from 'astro:content';
 
-const projectsEntry = await getEntry('site', 'projects');
+const projectsEntry = await getEntry('pages', 'projects');
 const projectsData = projectsEntry?.data;
 const renderedProjects = projectsEntry ? await render(projectsEntry) : null;
 const ProjectsContent = renderedProjects?.Content;

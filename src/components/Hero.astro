@@ -4,7 +4,7 @@ import { site, withBase } from '../data/site';
 import Icon from './Icon.astro';
 import { getEntry } from 'astro:content';
 
-const homeEntry = await getEntry('site', 'home');
+const homeEntry = await getEntry('pages', 'home');
 const homeData = homeEntry?.data;
 
 const greeting = homeData?.greeting ?? "Hello, we're";

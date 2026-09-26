@@ -12,7 +12,7 @@ import {
 } from '../data/resume';
 import { getEntry, render } from 'astro:content';
 
-const workEntry = await getEntry('site', 'work');
+const workEntry = await getEntry('pages', 'work');
 const workData = workEntry?.data;
 const renderedWork = workEntry ? await render(workEntry) : null;
 const WorkContent = renderedWork?.Content;

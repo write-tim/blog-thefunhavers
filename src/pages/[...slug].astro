@@ -3,7 +3,7 @@ import Layout from '../components/Layout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('pages', ({ data }) => !data.draft);
+  const entries = await getCollection('pages');
   const reservedSlugs = new Set([
     '',
     'home',
