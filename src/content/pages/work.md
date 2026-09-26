@@ -9,7 +9,7 @@ phone: (618) 534-2098
 showPhone: false
 contactLinks:
   - label: Portfolio
-    url: https://timothyjohnsonwrites.com
+    url: https://portfolio.timothyjohnsonwrites.com
     show: true
   - label: Email
     url: mailto:tim@timothyjohnsonwrites.com
