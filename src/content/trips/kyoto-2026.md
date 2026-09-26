@@ -22,6 +22,7 @@ gallery:
   - /img/trips/sample/market-alley.jpg
   - /img/trips/sample/night-river.jpg
   - /img/trips/sample/shrine-cat.jpg
+draft: true
 ---
 
 This is a sample trip — replace every word and photo with your own. The structure is simple: write your story in this file, drop photos into `public/img/trips/<your-trip>/`, and list them under `gallery`.
